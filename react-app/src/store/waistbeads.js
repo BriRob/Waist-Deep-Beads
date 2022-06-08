@@ -20,8 +20,8 @@ export const getAllWaistbeadsThunk = () => async (dispatch) => {
     return response
 }
 
-export const getOneWaistbead = () => async (dispatch) => {
-    const response = await fetch("/api/waistbeads/:bead_id")
+export const getOneWaistbead = (beadId) => async (dispatch) => {
+    const response = await fetch(`/api/waistbeads/${beadId}`)
     if (response.ok) {
         const waistbead = await response.json()
         dispatch(getOneWb(waistbead))

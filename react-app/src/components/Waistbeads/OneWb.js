@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getOneWaistbead } from "../../store/waistbeads";
+import { getOneWaistbeadThunk } from "../../store/waistbeads";
 
 function OneWb() {
   const { beadId } = useParams();
@@ -9,7 +9,7 @@ function OneWb() {
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
   //   console.log("waistbead", waistbead);
   useEffect(() => {
-    dispatch(getOneWaistbead(beadId));
+    dispatch(getOneWaistbeadThunk(beadId));
   }, [dispatch]);
 
   let categories;
@@ -38,6 +38,7 @@ function OneWb() {
             ))}
           </div>
           <div>{waistbead.description}</div>
+          <div>{waistbead.created_at}</div>
         </div>
       )}
     </>

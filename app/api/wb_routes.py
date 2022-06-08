@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, Waistbead, db
 from app.forms.create_wb import CreateWbForm
+
+from app.awsS3 import upload_file_to_s3, allowed_file, get_unique_filename
 from app.utils import validation_errors_to_error_messages
 
 wb_routes = Blueprint('waistbeads', __name__)
@@ -31,11 +33,31 @@ def one_wb(bead_id):
 def post_wb(user_id):
     form = CreateWbForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("\n\n here!!!!!\n\n")
 
     if form.validate_on_submit():
+
+        if 'bead_img_url' in request.files:
+            image = request.files['bead_img_url']
+
+            if not allowed_file(image.filename):
+                return {'errors': ['File type not permitted']}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if 'url' not in upload:
+                return upload, 400
+
+            url = upload['url']
+
+
+
         new_wb = Waistbead(
-            user_id=user_id,
-            bead_img_url=form.data['bead_img_url'],
+            beader_id=user_id,
+            # bead_img_url=form.data['bead_img_url'],
+            bead_img_url=url,
             name=form.data['name'],
             price=form.data['price'],
             description=form.data['description'],

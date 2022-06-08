@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { newWaistbeadThunk } from "../../store/waistbeads";
 
 function NewWb() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
 
@@ -22,26 +25,53 @@ function NewWb() {
   //   categories = Object.values(waistbead?.categories);
   //   // console.log("category", Object.values(waistbead.categories))
   // }
+
+  const updateImage = async (e) => {
+    const file = e.target.files[0]
+    setBeadImgUrl(file)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const bead_img_url = beadImgUrl;
+    const in_stock = inStock;
+    const description = desc;
+    const form = { bead_img_url, name, price, description, in_stock };
+
+    const post = await dispatch(newWaistbeadThunk(user.id, form));
+
+    console.log(post);
+    if (post.errors) {
+      console.log("there are errors");
+      setErrors(post.errors);
+    } else {
+      history.push(`/waistbeads/${post.id}`);
+    }
   };
+
+  console.log(errors)
 
   return (
     <>
       <p>Your New Creation</p>
       <form onSubmit={handleSubmit}>
+        {errors.map((error, idx) => (
+          <div id="errors" key={idx}>
+            {error}
+          </div>
+        ))}
         <label>
-          Upload Photo
+          Upload Photo<span>*</span>
           <input
-            type="text"
+            type="file"
             name="bead_img_url"
-            onChange={(e) => setBeadImgUrl(e.target.value)}
-            value={beadImgUrl}
+            onChange={updateImage}
+            // value={beadImgUrl}
             accept=".jpg, .jpeg, .png, .gif"
           ></input>
         </label>
         <label>
-          Name of Creation
+          Name of Creation<span>*</span>
           <input
             type="text"
             name="name"
@@ -51,7 +81,7 @@ function NewWb() {
           ></input>
         </label>
         <label>
-          Price
+          Price<span>*</span>
           <input
             type="number"
             name="price"
@@ -70,12 +100,13 @@ function NewWb() {
         <label>
           In Stock?
           <input
-          type="checkbox"
-          onChange={(e) => setInStock(!inStock)}
-          checked={inStock}
+            type="checkbox"
+            onChange={(e) => setInStock(!inStock)}
+            checked={inStock}
           ></input>
         </label>
         <button>Post</button>
+        <div>*Required</div>
       </form>
     </>
   );

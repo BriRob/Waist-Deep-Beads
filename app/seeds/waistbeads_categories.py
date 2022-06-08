@@ -5,7 +5,7 @@ def seed_waist_cat():
         beader_id=1, bead_img_url='https://waistdeepbucket.s3.amazonaws.com/sacred.png', name='Sacred Waislet', price=29.99, description='For more info or to purchase, please contact Alycia R. at 123-456-7891 or alycia@waistbeader.io'
     )
     pearl = Waistbead(
-        beader_id=1, bead_img_url='https://waistdeepbucket.s3.amazonaws.com/international_lover.png', name='Mother of Pearl Waislet', price=34.99, description='For more info or to purchase, please contact Alycia R. at 123-456-7891 or alycia@waistbeader.io'
+        beader_id=1, bead_img_url='https://waistdeepbucket.s3.amazonaws.com/pearl.png', name='Mother of Pearl Waislet', price=34.99, description='For more info or to purchase, please contact Alycia R. at 123-456-7891 or alycia@waistbeader.io'
     )
     international = Waistbead(
         beader_id=2, bead_img_url='https://waistdeepbucket.s3.amazonaws.com/international_lover.png', name='International Lover Waistlet', price=40.00, description='This was inspired by one of my favorite artists of all time, The Artist Formerly Known as Prince! For more info or to purchase, please contact Alycia R. at 123-456-7891 or alycia@waistbeader.io'

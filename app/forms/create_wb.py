@@ -1,4 +1,3 @@
-from unicodedata import category
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, FloatField, BooleanField
 from wtforms.validators import DataRequired, ValidationError
@@ -9,4 +8,4 @@ class CreateWbForm(FlaskForm):
     price = FloatField('price', validators=[DataRequired('Price is required')])
     description = TextAreaField('description')
     in_stock = BooleanField('in_stock')
-    # category = 
+    # category =

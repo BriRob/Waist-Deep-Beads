@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import OneWb from './components/Waistbeads/OneWb';
+import NewWb from './components/Waistbeads/NewWb';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,9 +46,13 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <Splash/>
         </ProtectedRoute>
+        <ProtectedRoute path='/waistbeads/new' exact={true} >
+          <NewWb/>
+        </ProtectedRoute>
         <ProtectedRoute path='/waistbeads/:beadId' exact={true} >
           <OneWb/>
         </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );

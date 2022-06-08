@@ -15,9 +15,9 @@ class Waistbead(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    user = db.relationship('Waistbead', back_populates = 'waistbeads')
-    reviews = db.relationship('Waistbead', back_populates = 'waistbead')
-    categories = db.relationship('Waistbead', secondary=waistbeads_categories, back_populates = 'waistbeads')
+    user = db.relationship('User', back_populates = 'waistbeads', lazy='joined')
+    reviews = db.relationship('Review', back_populates = 'waistbead')
+    categories = db.relationship('Category', secondary=waistbeads_categories, back_populates = 'waistbeads')
 
     def to_dict(self):
         return {

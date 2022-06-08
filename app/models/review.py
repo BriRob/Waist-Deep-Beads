@@ -12,8 +12,8 @@ class Review(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
-    author = db.relationship('Review', back_populates = 'reviews')
-    waistbead = db.relationship('Review', back_populates = 'reviews')
+    author = db.relationship('User', back_populates = 'reviews')
+    waistbead = db.relationship('Waistbead', back_populates = 'reviews')
 
     def to_dict(self):
         return {

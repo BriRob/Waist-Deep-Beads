@@ -7,8 +7,8 @@ class Category(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     category_name = db.Column(db.String(70), nullable=False, unique=True)
-    
-    waistbeads = db.relationship('Category', secondary=waistbeads_categories, back_populates = 'categories')
+
+    waistbeads = db.relationship('Waistbead', secondary=waistbeads_categories, back_populates = 'categories')
 
 
     def to_dict(self):

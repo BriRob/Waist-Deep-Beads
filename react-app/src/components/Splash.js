@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getAllWaistbeadsThunk } from "../store/waistbeads";
 
 function Splash() {
@@ -17,13 +18,12 @@ function Splash() {
         <h1>My Home Page</h1>
         <div>
             {waistbeads?.map((bead,idx) => (
-                <div key={idx}>
+                <Link to={`/waistbeads/${bead.id}`} key={idx}>
                     <img src={bead.bead_img_url} alt="waistbeads"></img>
-                    <div>{bead.name}</div>
-                    {/* {bead.in_stock ? <div>yes</div> : <div>no</div>} */}
-                    <div>{bead.rating}</div>
-                    <div>{bead.price}</div>
-                </div>
+                    <h3>{bead.name}</h3>
+                    {/* <div>Average Rating: {bead.rating}</div> */}
+                    <div>${bead.price}</div>
+                </Link>
             ))}
         </div>
         </>

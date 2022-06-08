@@ -29,7 +29,7 @@ class Waistbead(db.Model):
             'price': self.price,
             'description': self.description,
             'in_stock': self.in_stock,
-            'reviews': self.reviews.to_dict(),
+            'reviews': {review.id: review.to_dict() for review in self.reviews},
             'categories': {category.id: category.to_dict() for category in self.categories},
             'created_at': self.created_at
         }

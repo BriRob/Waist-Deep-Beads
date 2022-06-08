@@ -16,6 +16,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
+    waistbeads = db.relationship('User', back_populates = 'user')
+    reviews = db.relationship('User', back_populates = 'author')
 
     @property
     def password(self):

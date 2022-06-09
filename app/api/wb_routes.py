@@ -10,7 +10,7 @@ wb_routes = Blueprint('waistbeads', __name__)
 
 # get all waistbeads
 @wb_routes.route('/')
-@login_required
+# @login_required
 def all_waistbeads():
     waistbeads = Waistbead.query.order_by(Waistbead.id.desc()).all()
     # print(waistbeads)
@@ -20,7 +20,7 @@ def all_waistbeads():
 
 # get one waistbead creation
 @wb_routes.route('/<int:bead_id>')
-@login_required
+# @login_required
 def one_wb(bead_id):
     waistbead = Waistbead.query.get(bead_id)
     return waistbead.to_dict()

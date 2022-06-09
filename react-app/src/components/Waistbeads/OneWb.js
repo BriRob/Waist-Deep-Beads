@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import {
@@ -13,6 +13,9 @@ function OneWb() {
   const history = useHistory();
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
   //   console.log("waistbead", waistbead);
+
+  const [showEdit, setShowEdit] = useState(false);
+
   useEffect(() => {
     dispatch(getOneWaistbeadThunk(beadId));
   }, [dispatch]);
@@ -31,29 +34,34 @@ function OneWb() {
           <img src={waistbead.bead_img_url} alt="waistbeads"></img>
           <h2>{waistbead.name}</h2>
           <div>Beader: {waistbead.user.username}</div>
-          <div>${waistbead.price}</div>
-          <div>
-            In Stock?
-            {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
-          </div>
-          <div>
-            categories:
-            {categories.map((name, idx) => (
-              <span key={idx}>{name.category_name}</span>
-            ))}
-          </div>
-          <div>{waistbead.description}</div>
-          <div>{waistbead.created_at}</div>
-          <button>Edit</button>
-          <button
-            onClick={() => {
-              dispatch(deleteWaistbeadThunk(beadId));
-              return history.push("/");
-            }}
-          >
-            Delete
-          </button>
-          <EditWb />
+
+          {!showEdit && (
+            <>
+              <div>${waistbead.price}</div>
+              <div>
+                In Stock?
+                {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+              </div>
+              <div>
+                categories:
+                {categories.map((name, idx) => (
+                  <span key={idx}>{name.category_name}</span>
+                ))}
+              </div>
+              <div>{waistbead.description}</div>
+              <div>{waistbead.created_at}</div>
+              <button onClick={() => setShowEdit(true)}>Edit</button>
+              <button
+                onClick={() => {
+                  dispatch(deleteWaistbeadThunk(beadId));
+                  return history.push("/");
+                }}
+              >
+                Delete
+              </button>
+            </>
+          )}
+          {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
         </div>
       )}
     </>

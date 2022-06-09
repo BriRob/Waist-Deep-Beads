@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { newWaistbeadThunk } from "../../store/waistbeads";
 
 function NewWb() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+
 
   const [beadImgUrl, setBeadImgUrl] = useState("");
   const [name, setName] = useState("");
@@ -15,6 +16,10 @@ function NewWb() {
   const [inStock, setInStock] = useState(true);
 
   const [errors, setErrors] = useState([]);
+
+  if (!user) {
+    return <Redirect to='/login' />
+  }
 
   // useEffect(() => {
   //   dispatch(getOneWaistbead(beadId));

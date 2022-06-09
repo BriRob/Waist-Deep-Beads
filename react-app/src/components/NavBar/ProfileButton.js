@@ -21,7 +21,7 @@ function ProfileButton({ user }) {
   }, [menu]);
 
   return (
-    <span>
+    <div>
       <span onClick={() => setMenu(true)}>{user.username}</span>
       {menu && (
         <div>
@@ -29,7 +29,7 @@ function ProfileButton({ user }) {
           <LogoutButton />
         </div>
       )}
-    </span>
+    </div>
   );
 }
 

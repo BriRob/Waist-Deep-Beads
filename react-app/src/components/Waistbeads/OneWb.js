@@ -13,6 +13,9 @@ function OneWb() {
   const history = useHistory();
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
   //   console.log("waistbead", waistbead);
+
+  
+
   useEffect(() => {
     dispatch(getOneWaistbeadThunk(beadId));
   }, [dispatch]);

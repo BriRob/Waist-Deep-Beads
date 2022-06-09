@@ -31,6 +31,8 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <div className='underNav'>
+
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -38,23 +40,24 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        <Route path='/users' exact={true} >
           <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        </Route>
+        <Route path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        </Route>
+        <Route path='/' exact={true} >
           <Splash/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/waistbeads/new' exact={true} >
+        </Route>
+        <Route path='/waistbeads/new' exact={true} >
           <NewWb/>
-        </ProtectedRoute>
-        <ProtectedRoute path='/waistbeads/:beadId' exact={true} >
+        </Route>
+        <Route path='/waistbeads/:beadId' exact={true} >
           <OneWb/>
-        </ProtectedRoute>
+        </Route>
 
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }

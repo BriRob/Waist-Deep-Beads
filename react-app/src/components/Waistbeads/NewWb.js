@@ -40,16 +40,16 @@ function NewWb() {
 
     const post = await dispatch(newWaistbeadThunk(user.id, form));
 
-    console.log(post);
+    // console.log(post);
     if (post.errors) {
-      console.log("there are errors");
+      // console.log("there are errors");
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
     }
   };
 
-  console.log(errors)
+  // console.log(errors)
 
   return (
     <>

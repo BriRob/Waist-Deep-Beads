@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import Splash from './components/Splash';
+import Splash from './components/Splash/Splash';
 import OneWb from './components/Waistbeads/OneWb';
 import NewWb from './components/Waistbeads/NewWb';
 

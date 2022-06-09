@@ -33,7 +33,7 @@ def one_wb(bead_id):
 def post_wb(user_id):
     form = CreateWbForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("\n\n here!!!!!\n\n")
+    # print("\n\n here!!!!!\n\n")
 
     if form.validate_on_submit():
 
@@ -51,8 +51,6 @@ def post_wb(user_id):
                 return upload, 400
 
             url = upload['url']
-
-
 
         new_wb = Waistbead(
             beader_id=user_id,
@@ -73,18 +71,53 @@ def post_wb(user_id):
 
 
 # edit waistbead post
-@wb_routes.route('/<int:bead_id>/<int:user_id>/edit', methods=['GET', 'PUT'])
+@wb_routes.route('/<int:bead_id>/edit', methods=['GET', 'PUT'])
 @login_required
-def edit_wb(bead_id, user_id):
-    # user = User.query.get(id)
-    # return user.to_dict()
-    pass
+def edit_wb(bead_id):
+    editing_wb = Waistbead.query.get(bead_id)
+    form = CreateWbForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    # print("\n\n here!!!!!\n\n")
+
+    if form.validate_on_submit():
+
+        if 'bead_img_url' in request.files:
+            image = request.files['bead_img_url']
+
+            if not allowed_file(image.filename):
+                return {'errors': ['File type not permitted']}, 400
+
+            image.filename = get_unique_filename(image.filename)
+
+            upload = upload_file_to_s3(image)
+
+            if 'url' not in upload:
+                return upload, 400
+
+            url = upload['url']
+            editing_wb.bead_img_url=url
+
+        editing_wb.name = form.data['name']
+        editing_wb.price = form.data['price']
+        editing_wb.description = form.data['description']
+        editing_wb.in_stock = form.data['in_stock']
+
+        db.session.add(editing_wb)
+        # add category append here
+        db.session.commit()
+        return editing_wb.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 
 # delete waistbead post
 @wb_routes.route('/<int:bead_id>/delete', methods=['GET', 'DELETE'])
 @login_required
 def delete_wb(bead_id):
+    del_wb = Waistbead.query.get(bead_id)
+    db.session.delete(del_wb)
+    db.session.commit()
+    return del_wb.to_dict()
     # user = User.query.get(id)
     # return user.to_dict()
-    pass

@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import LogoutButton from "./auth/LogoutButton";
+import LogoutButton from "../auth/LogoutButton";
+import ProfileButton from "./ProfileButton";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -9,58 +10,54 @@ const NavBar = () => {
   let navbar;
   if (sessionUser) {
     navbar = (
-      <div>
+      <>
+      <ProfileButton user={sessionUser}/>
+      {/* <span>
+        {sessionUser.username}
+      </span> */}
+      {/* <span>
         <LogoutButton />
-      </div>
+      </span> */}
+      </>
     );
   } else {
     navbar = (
-      <div>
+      <>
+      <span>
         <NavLink to="/login" exact={true} activeClassName="active">
           Login
         </NavLink>
-
+        </span>
+        <span>
         <NavLink to="/sign-up" exact={true} activeClassName="active">
           Sign Up
         </NavLink>
-      </div>
+        </span>
+      </>
     );
   }
 
   return (
     <nav>
-      <ul>
-        <li>
+      <div>
+        <span>
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
-        </li>
+        </span>
 
-        <li>
+        <span>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
-        </li>
-        <li>
+        </span>
+        <span>
           <NavLink to="/waistbeads/new" exact={true} activeClassName="active">
             New Post
           </NavLink>
-        </li>
+        </span>
         {navbar}
-        {/* <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li> */}
-      </ul>
+      </div>
     </nav>
   );
 };

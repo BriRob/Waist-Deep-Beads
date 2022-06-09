@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import OneWb from './components/Waistbeads/OneWb';
 import NewWb from './components/Waistbeads/NewWb';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);

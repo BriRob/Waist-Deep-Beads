@@ -22,6 +22,7 @@ def all_waistbeads():
 @wb_routes.route('/<int:bead_id>')
 # @login_required
 def one_wb(bead_id):
+    print('in one wb! \n\n')
     waistbead = Waistbead.query.get(bead_id)
     return waistbead.to_dict()
 

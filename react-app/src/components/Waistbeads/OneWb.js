@@ -6,13 +6,15 @@ import {
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
 import EditWb from "./EditWb";
+import "./OneWb.css";
 
 function OneWb() {
   const { beadId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const sessionUser = useSelector((state) => state.session?.user);
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
-  //   console.log("waistbead", waistbead);
+  console.log("waistbead", waistbead);
 
   const [showEdit, setShowEdit] = useState(false);
 
@@ -29,39 +31,47 @@ function OneWb() {
   return (
     <>
       {waistbead && (
-        <div>
+        <div className="oneWbBig">
           {/* <div>Hello</div> */}
+          {/* <div className=""> */}
           <img src={waistbead.bead_img_url} alt="waistbeads"></img>
-          <h2>{waistbead.name}</h2>
-          <div>Beader: {waistbead.user.username}</div>
+          {/* </div> */}
+          <div className="wb-details">
+            <h1>{waistbead.name}</h1>
+            <div>Beader: {waistbead.user.username}</div>
 
-          {!showEdit && (
-            <>
-              <div>${waistbead.price}</div>
-              <div>
-                In Stock?
-                {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
-              </div>
-              <div>
-                categories:
-                {categories.map((name, idx) => (
-                  <span key={idx}>{name.category_name}</span>
-                ))}
-              </div>
-              <div>{waistbead.description}</div>
-              <div>{waistbead.created_at}</div>
-              <button onClick={() => setShowEdit(true)}>Edit</button>
-              <button
-                onClick={() => {
-                  dispatch(deleteWaistbeadThunk(beadId));
-                  return history.push("/");
-                }}
-              >
-                Delete
-              </button>
-            </>
-          )}
-          {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
+            {!showEdit && (
+              <>
+                <div>${waistbead.price}</div>
+                <div>
+                  In Stock?
+                  {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+                </div>
+                <div>
+                  categories:
+                  {categories.map((name, idx) => (
+                    <span key={idx}>{name.category_name}</span>
+                  ))}
+                </div>
+                <div>{waistbead.description}</div>
+                <div>{waistbead.created_at}</div>
+                {sessionUser && waistbead.beader_id === sessionUser.id && (
+                  <>
+                    <button onClick={() => setShowEdit(true)}>Edit</button>
+                    <button
+                      onClick={() => {
+                        dispatch(deleteWaistbeadThunk(beadId));
+                        return history.push("/");
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
+              </>
+            )}
+            {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
+          </div>
         </div>
       )}
     </>

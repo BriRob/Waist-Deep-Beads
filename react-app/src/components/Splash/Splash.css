@@ -1,5 +1,6 @@
 .splash {
     margin: 0 10%;
+    /* background-color: #ded8f6; */
 }
 
 .titleAndP {
@@ -7,6 +8,8 @@
     margin: 40px 0;
     text-align: center;
     /* margin-bottom: 10px; */
+    background-color: #ded8f6;
+
 }
 
 .splashPosts {
@@ -15,6 +18,7 @@
     /* width: 75%; */
     gap: 15px;
     margin: 0 5%;
+    background-color: #ffccff;
 }
 
 .eachPost {

@@ -6,7 +6,7 @@ import {
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
 
-function EditWb({hideEdit}) {
+function EditWb({ hideEdit }) {
   const { beadId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -26,14 +26,14 @@ function EditWb({hideEdit}) {
   }, [dispatch]);
 
   const updateImage = async (e) => {
-    const file = e.target.files[0]
-    setBeadImgUrl(file)
-  }
+    const file = e.target.files[0];
+    setBeadImgUrl(file);
+  };
 
   const handleCancel = (e) => {
-    e.preventDefault()
-    hideEdit()
-  }
+    e.preventDefault();
+    hideEdit();
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const bead_img_url = beadImgUrl;
@@ -49,64 +49,74 @@ function EditWb({hideEdit}) {
       setErrors(post.errors);
     } else {
       // history.push(`/waistbeads/${post.id}`);
-      hideEdit()
+      hideEdit();
     }
   };
 
   return (
     <>
-      <div>Editing!!!!!</div>
+      <h3>Edit Your Creation</h3>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
           <div id="errors" key={idx}>
             {error}
           </div>
         ))}
-        <label>
-          Upload Photo<span>*</span>
-          <input
-            type="file"
-            name="bead_img_url"
-            onChange={updateImage}
-            // value={beadImgUrl}
-            accept=".jpg, .jpeg, .png, .gif"
-          ></input>
-        </label>
-        <label>
-          Name of Creation<span>*</span>
-          <input
-            type="text"
-            name="name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            // placeholder="Name.."
-          ></input>
-        </label>
-        <label>
-          Price<span>*</span>
-          <input
-            type="number"
-            name="price"
-            onChange={(e) => setPrice(e.target.value)}
-            value={price}
-          ></input>
-        </label>
-        <label>
-          <textarea
-            name="description"
-            onChange={(e) => setDesc(e.target.value)}
-            value={desc}
-            placeholder="Optional description here..."
-          ></textarea>
-        </label>
-        <label>
-          In Stock?
-          <input
-            type="checkbox"
-            onChange={(e) => setInStock(!inStock)}
-            checked={inStock}
-          ></input>
-        </label>
+        <div>
+          <label>
+            Upload Photo<span>*</span>
+            <input
+              type="file"
+              name="bead_img_url"
+              onChange={updateImage}
+              // value={beadImgUrl}
+              accept=".jpg, .jpeg, .png, .gif"
+            ></input>
+          </label>
+        </div>
+        <div>
+          <label>
+            Name of Creation<span>*</span>
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              // placeholder="Name.."
+            ></input>
+          </label>
+        </div>
+        <div>
+          <label>
+            Price<span>*</span>
+            <input
+              type="number"
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
+            ></input>
+          </label>
+        </div>
+        <div>
+          <label>
+            <textarea
+              name="description"
+              onChange={(e) => setDesc(e.target.value)}
+              value={desc}
+              placeholder="Optional description here..."
+            ></textarea>
+          </label>
+        </div>
+        <div>
+          <label>
+            In Stock?
+            <input
+              type="checkbox"
+              onChange={(e) => setInStock(!inStock)}
+              checked={inStock}
+            ></input>
+          </label>
+        </div>
         <button>Post</button>
         <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>

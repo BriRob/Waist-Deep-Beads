@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneWaistbeadThunk } from "../../store/waistbeads";
+import EditWb from "./EditWb";
 
 function OneWb() {
   const { beadId } = useParams();
@@ -17,6 +18,8 @@ function OneWb() {
     categories = Object.values(waistbead?.categories);
     // console.log("category", Object.values(waistbead.categories))
   }
+
+
 
   return (
     <>
@@ -39,6 +42,9 @@ function OneWb() {
           </div>
           <div>{waistbead.description}</div>
           <div>{waistbead.created_at}</div>
+          <button>Edit</button>
+          <button>Delete</button>
+          <EditWb/>
         </div>
       )}
     </>

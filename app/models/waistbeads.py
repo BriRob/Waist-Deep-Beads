@@ -8,7 +8,7 @@ class Waistbead(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     beader_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     bead_img_url = db.Column(db.String(255), nullable=False)
-    name = db.Column(db.String(255), nullable=False, unique=True)
+    name = db.Column(db.String(255), nullable=False)
     price = db.Column(db.Float(), nullable=False)
     description = db.Column(db.Text, nullable=True)
     in_stock = db.Column(db.Boolean, default=True)

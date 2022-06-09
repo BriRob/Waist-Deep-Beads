@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { newWaistbeadThunk } from "../../store/waistbeads";
+import { useHistory, useParams } from "react-router-dom";
+import {
+  editWaistbeadThunk,
+  getOneWaistbeadThunk,
+} from "../../store/waistbeads";
 
-function NewWb() {
-  const history = useHistory();
+function EditWb() {
+  const { beadId } = useParams();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
+  const history = useHistory();
+  // const sessionUser = useSelector((state) => state.session.user);
+  const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
 
-  const [beadImgUrl, setBeadImgUrl] = useState("");
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [desc, setDesc] = useState("");
-  const [inStock, setInStock] = useState(true);
+  const [beadImgUrl, setBeadImgUrl] = useState(waistbead?.bead_img_url);
+  const [name, setName] = useState(waistbead?.name);
+  const [price, setPrice] = useState(waistbead?.price);
+  const [desc, setDesc] = useState(waistbead?.description);
+  const [inStock, setInStock] = useState(waistbead?.in_stock);
 
   const [errors, setErrors] = useState([]);
 
-  // useEffect(() => {
-  //   dispatch(getOneWaistbead(beadId));
-  // }, [dispatch]);
-
-  // let categories;
-  // if (waistbead) {
-  //   categories = Object.values(waistbead?.categories);
-  //   // console.log("category", Object.values(waistbead.categories))
-  // }
+  useEffect(() => {
+    dispatch(getOneWaistbeadThunk(beadId));
+  }, [dispatch]);
 
   const updateImage = async (e) => {
     const file = e.target.files[0]
@@ -38,7 +37,7 @@ function NewWb() {
     const description = desc;
     const form = { bead_img_url, name, price, description, in_stock };
 
-    const post = await dispatch(newWaistbeadThunk(user.id, form));
+    const post = await dispatch(editWaistbeadThunk(beadId, form));
 
     // console.log(post);
     if (post.errors) {
@@ -49,11 +48,9 @@ function NewWb() {
     }
   };
 
-  // console.log(errors)
-
   return (
     <>
-      <p>Your New Creation</p>
+      <div>Editing!!!!!</div>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
           <div id="errors" key={idx}>
@@ -112,4 +109,4 @@ function NewWb() {
   );
 }
 
-export default NewWb;
+export default EditWb;

@@ -34,7 +34,7 @@ export const newWaistbeadThunk = (userId, form) => async (dispatch) => {
   const { bead_img_url, name, price, description, in_stock } = form;
   const formData = new FormData();
 
-  console.log("in thunk!!!")
+//   console.log("in thunk!!!")
   formData.append("bead_img_url", bead_img_url);
   formData.append("name", name);
   formData.append("price", price);
@@ -61,6 +61,39 @@ export const newWaistbeadThunk = (userId, form) => async (dispatch) => {
     }
   }
   // return response
+};
+
+export const editWaistbeadThunk = (beadId, form) => async (dispatch) => {
+  const { bead_img_url, name, price, description, in_stock } = form;
+  const formData = new FormData();
+
+//   console.log("in thunk!!!")
+  formData.append("bead_img_url", bead_img_url);
+  formData.append("name", name);
+  formData.append("price", price);
+  formData.append("description", description);
+  formData.append("in_stock", in_stock);
+
+  const option = {
+    method: "PUT",
+    body: formData,
+  };
+  const response = await fetch(`/api/waistbeads/${beadId}/edit`, option);
+
+  if (response.ok) {
+    const post = await response.json();
+    dispatch(getOneWb(post));
+    return post;
+  } else if (response.status < 500) {
+    const data = await response.json();
+
+    if (data.errors) {
+      return data;
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  }
+  return response
 };
 
 export default function waistbeadsReducer(state = {}, action) {

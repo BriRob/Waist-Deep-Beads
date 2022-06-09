@@ -9,3 +9,5 @@ class CreateWbForm(FlaskForm):
     description = TextAreaField('description')
     in_stock = BooleanField('in_stock')
     # category =
+
+# class EditWbForm(FlaskForm):

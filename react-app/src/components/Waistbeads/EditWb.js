@@ -6,7 +6,7 @@ import {
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
 
-function EditWb() {
+function EditWb({hideEdit}) {
   const { beadId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -30,6 +30,10 @@ function EditWb() {
     setBeadImgUrl(file)
   }
 
+  const handleCancel = (e) => {
+    e.preventDefault()
+    hideEdit()
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     const bead_img_url = beadImgUrl;
@@ -44,7 +48,8 @@ function EditWb() {
       // console.log("there are errors");
       setErrors(post.errors);
     } else {
-      history.push(`/waistbeads/${post.id}`);
+      // history.push(`/waistbeads/${post.id}`);
+      hideEdit()
     }
   };
 
@@ -103,6 +108,7 @@ function EditWb() {
           ></input>
         </label>
         <button>Post</button>
+        <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>
       </form>
     </>

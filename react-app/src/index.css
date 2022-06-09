@@ -1,3 +1,10 @@
 .underNav {
-    padding-top: 30px;
+    padding-top: 50px;
+}
+
+html {
+    background-color: #813aae;
+    /* background-color: #5583c6; */
+    /* background-color: #673398; */
+    font-family: 'Nunito';
 }

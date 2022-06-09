@@ -1,12 +1,16 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getOneWaistbeadThunk } from "../../store/waistbeads";
+import { useHistory, useParams } from "react-router-dom";
+import {
+  deleteWaistbeadThunk,
+  getOneWaistbeadThunk,
+} from "../../store/waistbeads";
 import EditWb from "./EditWb";
 
 function OneWb() {
   const { beadId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
   //   console.log("waistbead", waistbead);
   useEffect(() => {
@@ -18,8 +22,6 @@ function OneWb() {
     categories = Object.values(waistbead?.categories);
     // console.log("category", Object.values(waistbead.categories))
   }
-
-
 
   return (
     <>
@@ -43,8 +45,15 @@ function OneWb() {
           <div>{waistbead.description}</div>
           <div>{waistbead.created_at}</div>
           <button>Edit</button>
-          <button>Delete</button>
-          <EditWb/>
+          <button
+            onClick={() => {
+              dispatch(deleteWaistbeadThunk(beadId));
+              return history.push("/");
+            }}
+          >
+            Delete
+          </button>
+          <EditWb />
         </div>
       )}
     </>

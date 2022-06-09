@@ -115,6 +115,9 @@ def edit_wb(bead_id):
 @wb_routes.route('/<int:bead_id>/delete', methods=['GET', 'DELETE'])
 @login_required
 def delete_wb(bead_id):
+    del_wb = Waistbead.query.get(bead_id)
+    db.session.delete(del_wb)
+    db.session.commit()
+    return del_wb.to_dict()
     # user = User.query.get(id)
     # return user.to_dict()
-    pass

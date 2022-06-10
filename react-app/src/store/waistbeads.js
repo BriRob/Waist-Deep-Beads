@@ -109,6 +109,7 @@ export const deleteWaistbeadThunk = (beadId) => async (dispatch) => {
   if (response.ok) {
     const bead = await response.json();
     dispatch(deleteWb(bead));
+    
   }
   return response;
 };

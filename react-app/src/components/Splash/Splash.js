@@ -28,7 +28,9 @@ function Splash() {
             <img src={bead.bead_img_url} alt="waistbeads"></img>
             <h3>{bead.name}</h3>
             {/* <div>Average Rating: {bead.rating}</div> */}
-            <div>${bead.price}</div>
+            {/* <div>${bead.price}</div> */}
+            <div>{bead.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</div>
+
           </Link>
         ))}
       </div>

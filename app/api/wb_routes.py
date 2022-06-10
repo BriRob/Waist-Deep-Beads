@@ -120,5 +120,4 @@ def delete_wb(bead_id):
     db.session.delete(del_wb)
     db.session.commit()
     return del_wb.to_dict()
-    # user = User.query.get(id)
-    # return user.to_dict()
+

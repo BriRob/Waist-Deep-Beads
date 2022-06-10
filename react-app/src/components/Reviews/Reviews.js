@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getAllReviewsThunk } from "../../store/reviews";
 import AddReview from "./AddReview";
+import EditReview from "./EditReview";
 
 function Reviews({reviewsObj}) {
 //   const { beadId } = useParams();
@@ -29,11 +30,14 @@ function Reviews({reviewsObj}) {
         <AddReview />
         <div>
           {reviews.map((review, idx) => (
-            <div key={idx}>
+            <div key={review.id}>
               <div>{review.author.username}</div>
               <div>{review.created_at}</div>
               <div>{review.rating}</div>
               <div>{review.content}</div>
+              <button>Edit</button>
+              <button>Delete</button>
+              <EditReview reviewId={review.id}/>
             </div>
           ))}
         </div>

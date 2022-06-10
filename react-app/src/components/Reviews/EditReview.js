@@ -1,53 +1,47 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addReviewThunk, getAllReviewsThunk } from "../../store/reviews";
+import {
+  addReviewThunk,
+  editReviewThunk,
+  getAllReviewsThunk,
+} from "../../store/reviews";
 
-function AddReview() {
+function EditReview({ reviewId }) {
   const { beadId } = useParams();
+
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const review = useSelector(
+    (state) => state.reviewsReducer?.reviews[reviewId]
+  );
 
-  const [content, setContent] = useState("");
-  const [rating, setRating] = useState(5);
-
+  // console.log("review I am editing!!!", review)
+  const [content, setContent] = useState(review.content);
+  const [rating, setRating] = useState(review.rating);
   const [errors, setErrors] = useState([]);
-
-  const root = document.documentElement;
-
-  const scrollToBottom = () => {
-    root.scrollTo(100000, 1000000);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authId = user.id;
-    const form = { content, rating };
-    const newRev = await dispatch(addReviewThunk(beadId, authId, form));
 
-    if (newRev.errors) {
-      setErrors(newRev.errors);
+    const form = { content, rating };
+    const editRev = await dispatch(editReviewThunk(reviewId, form));
+
+    if (editRev.errors) {
+      setErrors(editRev.errors);
     } else {
       await dispatch(getAllReviewsThunk(beadId));
-      setContent("");
-      setRating(5);
-      setErrors([])
-      scrollToBottom()
+      setErrors([]);
     }
-    // console.log("from addrev thunk!! \n\n", newRev);
   };
-
-//   console.log(errors);
 
   const handleCancel = (e) => {
     e.preventDefault();
-    // close modal
   };
-
 
   return (
     <>
-      <h2>Add Your Review</h2>
+      <div>EDIT YOUR REVIEW</div>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
           <div id="errors" key={idx}>
@@ -86,4 +80,4 @@ function AddReview() {
   );
 }
 
-export default AddReview;
+export default EditReview;

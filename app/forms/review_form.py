@@ -12,5 +12,5 @@ def length_check(form, field):
         raise ValidationError(f'{field.label.text} must be less than 300 characters')
 
 class ReviewForm(FlaskForm):
-    content = TextAreaField('Content', validators=[DataRequired(message='Content is required'), length_check])
+    content = TextAreaField('Content', validators=[length_check])
     rating = IntegerField('rating', validators=[DataRequired(message='Rating is required')])

@@ -11,7 +11,6 @@ function OneReview({ review, beadId }) {
   const [showEdit, setShowEdit] = useState(false);
   return (
     <>
-      <div>One Review</div>
       <div>{review.author.username}</div>
       <div>{review.created_at}</div>
       {/* {showEdit ? (
@@ -31,9 +30,9 @@ function OneReview({ review, beadId }) {
         <>
           <button onClick={() => setShowEdit(true)}>Edit</button>
           <button
-            onClick={() => {
-              dispatch(deleteReviewThunk(review.id));
-              dispatch(getAllReviewsThunk(beadId));
+            onClick={async () => {
+              await dispatch(deleteReviewThunk(review.id));
+              await dispatch(getAllReviewsThunk(beadId));
             }}
           >
             Delete

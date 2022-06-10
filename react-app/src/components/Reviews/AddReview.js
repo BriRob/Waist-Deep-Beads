@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 
-function AddReview() {
+function AddReview({hideRev}) {
   const { beadId } = useParams();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -32,6 +32,7 @@ function AddReview() {
       setContent("");
       setRating(5);
       setErrors([])
+      hideRev()
       scrollToBottom()
     }
     // console.log("from addrev thunk!! \n\n", newRev);
@@ -41,6 +42,7 @@ function AddReview() {
 
   const handleCancel = (e) => {
     e.preventDefault();
+    hideRev()
     // close modal
   };
 

@@ -5,6 +5,7 @@ import {
   deleteWaistbeadThunk,
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
+import Reviews from "../Reviews/Reviews";
 import EditWb from "./EditWb";
 import "./OneWb.css";
 
@@ -72,6 +73,7 @@ function OneWb() {
             )}
             {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
           </div>
+          <Reviews />
         </div>
       )}
     </>

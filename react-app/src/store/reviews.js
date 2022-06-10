@@ -44,7 +44,7 @@ export const addReviewThunk = (beadId, authId, form) => async (dispatch) => {
   if (response.ok) {
     const review = await response.json();
     dispatch(addReview(review));
-    console.log('review from addthunk', review)
+    // console.log('review from addthunk', review)
     return review;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -67,8 +67,9 @@ export default function reviewsReducer(state = {}, action) {
       return newState;
     case ADD_REVIEW:
       newState = { ...state };
-      console.log('newState', newState);
-      console.log('action', action);
+    //   console.log('newState', newState);
+    //   console.log('action', action);
+      newState.reviews[action.review.id] = action.review
       return newState;
     case DELETE_REVIEW:
       newState = { ...state };

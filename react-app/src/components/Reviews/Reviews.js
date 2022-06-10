@@ -9,7 +9,7 @@ function Reviews({reviewsObj}) {
   const dispatch = useDispatch();
 //   const reviews = useSelector((state) => state.reviewsReducer?.reviews);
 
-  console.log(reviewsObj);
+//   console.log(reviewsObj);
   const reviews = Object.values(reviewsObj)
 
 //   useEffect(() => {

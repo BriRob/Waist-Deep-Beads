@@ -26,7 +26,7 @@ function OneWb() {
     dispatch(getOneWaistbeadThunk(beadId));
     dispatch(getAllReviewsThunk(beadId));
 
-  }, [dispatch]);
+  }, [dispatch, ]);
 
   let categories;
   if (waistbead) {

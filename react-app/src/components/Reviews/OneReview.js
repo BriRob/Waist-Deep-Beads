@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import EditReview from "./EditReview";
+import ReadStarRating from "./ReadStarRating";
 
 function OneReview({ review, beadId }) {
   const dispatch = useDispatch();
@@ -13,19 +14,15 @@ function OneReview({ review, beadId }) {
     <>
       <div>{review.author.username}</div>
       <div>{review.created_at}</div>
-      {/* {showEdit ? (
-      <div>show edit is true</div>
-      ): (
-      <div>show edit is false
-          <div>{review.rating}</div>
-      <div>{review.content}</div>
-      </div>
-      )} */}
-      {!showEdit && (<>
-
-      <div>{review.rating}</div>
-      <div>{review.content}</div>
-      </>)}
+      {!showEdit && (
+        <>
+          <div>
+            {/* {review.rating} */}
+            <ReadStarRating rating={review.rating} />
+          </div>
+          <div>{review.content}</div>
+        </>
+      )}
       {!showEdit && sessionUser && sessionUser.id === review.author.id && (
         <>
           <button onClick={() => setShowEdit(true)}>Edit</button>

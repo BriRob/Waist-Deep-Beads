@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addReviewThunk, getAllReviewsThunk } from "../../store/reviews";
+import StarRating from "./StarRating";
 
 function AddReview({hideRev}) {
   const { beadId } = useParams();
@@ -9,7 +10,7 @@ function AddReview({hideRev}) {
   const user = useSelector((state) => state.session.user);
 
   const [content, setContent] = useState("");
-  const [rating, setRating] = useState(5);
+  const [rating, setRating] = useState(0);
 
   const [errors, setErrors] = useState([]);
 
@@ -59,14 +60,15 @@ function AddReview({hideRev}) {
         <div>
           <label>
             Rating<span>*</span>
-            <input
+            <StarRating rating={rating} setRating={setRating}/>
+            {/* <input
               type="number"
               name="rating"
               value={rating}
               min={1}
               max={5}
               onChange={(e) => setRating(e.target.value)}
-            ></input>
+            ></input> */}
           </label>
         </div>
         <div>

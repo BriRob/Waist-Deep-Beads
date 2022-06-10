@@ -6,6 +6,7 @@ import {
   editReviewThunk,
   getAllReviewsThunk,
 } from "../../store/reviews";
+import StarRating from "./StarRating";
 
 function EditReview({ reviewId, hideEdit }) {
   const { beadId } = useParams();
@@ -53,14 +54,15 @@ function EditReview({ reviewId, hideEdit }) {
         <div>
           <label>
             Rating<span>*</span>
-            <input
+            <StarRating rating={rating} setRating={setRating}/>
+            {/* <input
               type="number"
               name="rating"
               value={rating}
               min={1}
               max={5}
               onChange={(e) => setRating(e.target.value)}
-            ></input>
+            ></input> */}
           </label>
         </div>
         <div>

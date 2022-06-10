@@ -22,11 +22,12 @@ export const getAllReviewsThunk = (beadId) => async (dispatch) => {
   if (response.ok) {
     const reviews = await response.json();
     dispatch(getAllReviews(reviews));
+    // console.log(reviews)
   }
   return response;
 };
 
-export const newWaistbeadThunk = (beadId, authId, form) => async (dispatch) => {
+export const addReviewThunk = (beadId, authId, form) => async (dispatch) => {
   const { content, rating } = form;
   const formData = new FormData();
 
@@ -43,6 +44,7 @@ export const newWaistbeadThunk = (beadId, authId, form) => async (dispatch) => {
   if (response.ok) {
     const review = await response.json();
     dispatch(addReview(review));
+    console.log('review from addthunk', review)
     return review;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -61,11 +63,12 @@ export default function reviewsReducer(state = {}, action) {
   switch (action.type) {
     case GET_ALL_REVIEWS:
       newState = { ...state, ...action.reviews };
-      console.log(newState);
+    //   console.log(newState);
       return newState;
     case ADD_REVIEW:
       newState = { ...state };
-      console.log(newState);
+      console.log('newState', newState);
+      console.log('action', action);
       return newState;
     case DELETE_REVIEW:
       newState = { ...state };

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { getAllReviewsThunk } from "../../store/reviews";
 import {
   deleteWaistbeadThunk,
+  getAllWaistbeadsThunk,
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
 import Reviews from "../Reviews/Reviews";
@@ -15,12 +17,15 @@ function OneWb() {
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session?.user);
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
+  const reviews = useSelector((state) => state.reviewsReducer?.reviews);
   console.log("waistbead", waistbead);
 
   const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
     dispatch(getOneWaistbeadThunk(beadId));
+    dispatch(getAllReviewsThunk(beadId));
+
   }, [dispatch]);
 
   let categories;
@@ -43,7 +48,7 @@ function OneWb() {
 
             {!showEdit && (
               <>
-                <div>${waistbead.price}</div>
+                <div>{waistbead.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</div>
                 <div>
                   In Stock?
                   {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
@@ -62,6 +67,7 @@ function OneWb() {
                     <button
                       onClick={() => {
                         dispatch(deleteWaistbeadThunk(beadId));
+                        dispatch(getAllWaistbeadsThunk())
                         return history.push("/");
                       }}
                     >
@@ -73,9 +79,9 @@ function OneWb() {
             )}
             {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
           </div>
-          <Reviews />
         </div>
       )}
+      {reviews && (<Reviews reviewsObj={reviews}/>)}
     </>
   );
 }

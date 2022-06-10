@@ -14,7 +14,7 @@ review_routes = Blueprint('reviews', __name__)
 def all_reviews(bead_id):
     reviews = Review.query.filter(Review.beads_id == bead_id).order_by(Review.id.asc()).all()
     print(reviews)
-    return {'reviews': [review.to_dict() for review in reviews]}
+    return {'reviews': {review.id: review.to_dict() for review in reviews}}
 
 
 # create review for one post

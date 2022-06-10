@@ -91,6 +91,7 @@ function NewWb() {
             type="number"
             name="price"
             onChange={(e) => setPrice(e.target.value)}
+            min={1}
             value={price}
           ></input>
         </label>

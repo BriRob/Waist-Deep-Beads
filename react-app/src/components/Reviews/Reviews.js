@@ -1,49 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getAllReviewsThunk } from "../../store/reviews";
+import { deleteReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import AddReview from "./AddReview";
 import EditReview from "./EditReview";
+import OneReview from "./OneReview";
 
-function Reviews({reviewsObj}) {
-//   const { beadId } = useParams();
-  const dispatch = useDispatch();
-//   const reviews = useSelector((state) => state.reviewsReducer?.reviews);
+function Reviews({ reviewsObj }) {
+  const { beadId } = useParams();
 
-//   console.log(reviewsObj);
-  const reviews = Object.values(reviewsObj)
+  const reviews = Object.values(reviewsObj);
 
-//   useEffect(() => {
-//     dispatch(getAllReviewsThunk(beadId));
-//   }, [dispatch]);
-
-//   if (reviews === undefined) {
-//     return <h3>Loading...</h3>;
-//   } else {
-    return (
-
+  return (
+    <div>
+      {reviews.length > 1 && <h3>{reviews.length} Reviews</h3>}
+      {reviews.length === 1 && <h3>{reviews.length} Review</h3>}
+      {reviews.length === 0 && <h3>0 Reviews</h3>}
+      <button>Add Your Review</button>
+      <AddReview />
       <div>
-        {reviews.length > 1 && <h3>{reviews.length} Reviews</h3>}
-        {reviews.length === 1 && <h3>{reviews.length} Review</h3>}
-        {reviews.length === 0 && <h3>0 Reviews</h3>}
-        <button>Add Your Review</button>
-        <AddReview />
-        <div>
-          {reviews.map((review, idx) => (
-            <div key={review.id}>
-              <div>{review.author.username}</div>
-              <div>{review.created_at}</div>
-              <div>{review.rating}</div>
-              <div>{review.content}</div>
-              <button>Edit</button>
-              <button>Delete</button>
-              <EditReview reviewId={review.id}/>
-            </div>
-          ))}
-        </div>
+        {reviews.map((review, idx) => (
+          <div key={review.id}>
+              <OneReview review={review} beadId={beadId}/>
+          </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
 // }
 
 export default Reviews;

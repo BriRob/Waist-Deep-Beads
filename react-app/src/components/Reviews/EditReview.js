@@ -7,7 +7,7 @@ import {
   getAllReviewsThunk,
 } from "../../store/reviews";
 
-function EditReview({ reviewId }) {
+function EditReview({ reviewId, hideEdit }) {
   const { beadId } = useParams();
 
   const dispatch = useDispatch();
@@ -32,11 +32,13 @@ function EditReview({ reviewId }) {
     } else {
       await dispatch(getAllReviewsThunk(beadId));
       setErrors([]);
+      hideEdit()
     }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
+    hideEdit()
   };
 
   return (

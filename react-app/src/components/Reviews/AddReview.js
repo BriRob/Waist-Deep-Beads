@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import StarRating from "./StarRating";
+import './AddReview.css'
 
 function AddReview({hideRev}) {
   const { beadId } = useParams();

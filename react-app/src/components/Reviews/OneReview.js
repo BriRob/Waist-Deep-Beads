@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import EditReview from "./EditReview";
 import ReadStarRating from "./ReadStarRating";
+import "./OneReview.css";
 
 function OneReview({ review, beadId }) {
   const dispatch = useDispatch();
@@ -12,8 +13,10 @@ function OneReview({ review, beadId }) {
   const [showEdit, setShowEdit] = useState(false);
   return (
     <>
-      <div>{review.author.username}</div>
-      <div>{review.created_at}</div>
+      <div className="uname-date">
+        <div>{review.author.username}</div>
+        <div>{review.created_at}</div>
+      </div>
       {!showEdit && (
         <>
           <div>

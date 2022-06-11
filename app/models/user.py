@@ -37,5 +37,5 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'admin': self.admin,
-            'created_at': self.created_at
+            'created_at': self.created_at.strftime("%a,  %b %d %Y")
         }

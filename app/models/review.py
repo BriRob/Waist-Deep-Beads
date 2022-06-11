@@ -23,5 +23,5 @@ class Review(db.Model):
             'beads_id': self.beads_id,
             'content': self.content,
             'rating': self.rating,
-            'created_at': self.created_at
+            'created_at': self.created_at.strftime("%a,  %b %d %Y")
         }

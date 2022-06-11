@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { deleteReviewThunk, getAllReviewsThunk } from "../../store/reviews";
+// import { deleteReviewThunk, getAllReviewsThunk } from "../../store/reviews";
 import AddReview from "./AddReview";
-import EditReview from "./EditReview";
+// import EditReview from "./EditReview";
 import OneReview from "./OneReview";
+import './Reviews.css'
 
 function Reviews({ reviewsObj }) {
   const { beadId } = useParams();
@@ -17,7 +18,7 @@ function Reviews({ reviewsObj }) {
       if (sessionUser){
           setShowAddRev(true)
       } else {
-          history.push('/')
+          history.push('/login')
       }
 
   }
@@ -26,15 +27,19 @@ function Reviews({ reviewsObj }) {
   const reviews = Object.values(reviewsObj);
 
   return (
-    <div>
-      {reviews.length > 1 && <h3>{reviews.length} Reviews</h3>}
-      {reviews.length === 1 && <h3>{reviews.length} Review</h3>}
-      {reviews.length === 0 && <h3>0 Reviews</h3>}
-      <button onClick={stateOfAdd}>Add Your Review</button>
+    <div className="bigReviews">
+      {reviews.length > 1 && <h2 className="bigRevTitle">{reviews.length} Reviews</h2>}
+      {reviews.length === 1 && <h2 className="bigRevTitle">{reviews.length} Review</h2>}
+      {reviews.length === 0 && <h2 className="bigRevTitle">0 Reviews</h2>}
+      <hr></hr>
+      <div className="outsideAddRevBtn">
+
+      <button className='addBtn' onClick={stateOfAdd}>Add Your Review</button>
+      </div>
       {showAddRev && <AddReview hideRev={() => setShowAddRev(false)}/>}
-      <div>
+      <div className="allRevs">
         {reviews.map((review, idx) => (
-          <div key={review.id}>
+          <div key={review.id} className="eachRev">
               <OneReview review={review} beadId={beadId}/>
           </div>
         ))}

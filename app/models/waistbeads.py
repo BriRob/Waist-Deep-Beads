@@ -31,5 +31,5 @@ class Waistbead(db.Model):
             'in_stock': self.in_stock,
             'reviews': {review.id: review.to_dict() for review in self.reviews},
             'categories': {category.id: category.to_dict() for category in self.categories},
-            'created_at': self.created_at
+            'created_at': self.created_at.strftime("%a,  %b %d %Y")
         }

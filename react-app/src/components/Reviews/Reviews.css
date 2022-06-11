@@ -1,0 +1,48 @@
+.bigReviews {
+  /* display: flex; */
+  margin: 0 10%;
+  margin-top: 2%;
+  /* width: 100%; */
+  min-width: 600px;
+  max-width: 830px;
+
+  /* justify-content: space-around; */
+  /* border: 1px green solid; */
+  background-color: #ded8f6;
+  border-radius: 7px;
+}
+
+.bigRevTitle {
+  text-align: center;
+  padding-top: 18px;
+}
+
+.bigReviews hr {
+  border-bottom: rgb(71, 67, 67) solid 1px;
+  /* color: black; */
+  width: 80%;
+  margin-bottom: 22px;
+}
+
+.outsideAddRevBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.addBtn {
+  font-family: "Berkshire Swash", cursive;
+  background-color: #fff139;
+  border: none;
+  border-radius: 3px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.allRevs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid green;
+  margin-top: 20px;
+  padding: 10px 0;
+}

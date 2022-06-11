@@ -3,12 +3,15 @@ display: flex;
 margin: 0 10%;
 /* width: 100%; */
 min-width: 600px;
+max-width: 830px;
 justify-content: space-around;
 }
 
 .oneWbBig img {
     width: 325px;
     height: 325px;
+    border-radius: 7px;
+    margin-top: 5%;
 }
 
 .wb-details {
@@ -17,4 +20,7 @@ justify-content: space-around;
     /* width: 100%; */
     border: 1px red solid;
     margin-left: 20px;
+    background-color: #ffccff;
+    border-radius: 7px;
+
 }

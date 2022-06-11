@@ -1,0 +1,10 @@
+.eachRev {
+    border-top: 1px solid black;
+    width: 90%;
+    padding: 5px 5px 20px;
+}
+
+.uname-date{
+    display: flex;
+    justify-content: space-between;
+}

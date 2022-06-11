@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { newWaistbeadThunk } from "../../store/waistbeads";
 
-function NewWb() {
+function NewWb({setShowModal}) {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
@@ -51,6 +51,7 @@ function NewWb() {
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
+      setShowModal(false)
     }
   };
 

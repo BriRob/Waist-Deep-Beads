@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 // import LogoutButton from "../auth/LogoutButton";
 import ProfileButton from "./ProfileButton";
 import "./NavBar.css";
+import NewWbModal from "../Waistbeads/NewWbModal";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -47,9 +48,10 @@ const NavBar = () => {
           </NavLink>
         </span> */}
         <span className="navLinks">
-          <NavLink to="/waistbeads/new" exact={true} activeClassName="active">
+          <NewWbModal />
+          {/* <NavLink to="/waistbeads/new" exact={true} activeClassName="active">
             New Post
-          </NavLink>
+          </NavLink> */}
         </span>
         {navbar}
       </div>

@@ -65,9 +65,9 @@ function OneWb() {
                   <>
                     <button onClick={() => setShowEdit(true)}>Edit</button>
                     <button
-                      onClick={() => {
-                        dispatch(deleteWaistbeadThunk(beadId));
-                        dispatch(getAllWaistbeadsThunk())
+                      onClick={async () => {
+                        await dispatch(deleteWaistbeadThunk(beadId));
+                        await dispatch(getAllWaistbeadsThunk())
                         return history.push("/");
                       }}
                     >

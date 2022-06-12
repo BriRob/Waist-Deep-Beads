@@ -3,13 +3,26 @@ import React, { useState } from 'react';
 // import LoginForm from '../auth/LoginForm';
 import NewWb from '../NewWb';
 import { Modal } from '../../../context/Modal';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategories } from '../../../store/categories';
 
 function NewWbModal() {
   const [showModal, setShowModal] = useState(false);
-
+  const dispatch = useDispatch()
+  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session?.user);
+  const stateOfAdd = async () => {
+    if (sessionUser) {
+      setShowModal(true);
+      await dispatch(getAllCategories())
+    } else {
+      history.push("/login");
+    }
+  };
   return (
     <>
-      <button onClick={() => setShowModal(true)}>NewWb</button>
+      <button onClick={() => stateOfAdd()}>NewWb</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <NewWb setShowModal={setShowModal}/>

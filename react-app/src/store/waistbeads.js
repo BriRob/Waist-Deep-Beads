@@ -35,9 +35,10 @@ export const getOneWaistbeadThunk = (beadId) => async (dispatch) => {
   return response;
 };
 
-export const newWaistbeadThunk = (userId, form) => async (dispatch) => {
+export const newWaistbeadThunk = (userId, form, newCateArr) => async (dispatch) => {
   const { bead_img_url, name, price, description, in_stock } = form;
   const formData = new FormData();
+  console.log('in newwbthunk', newCateArr)
 
   //   console.log("in thunk!!!")
   formData.append("bead_img_url", bead_img_url);
@@ -45,12 +46,17 @@ export const newWaistbeadThunk = (userId, form) => async (dispatch) => {
   formData.append("price", price);
   formData.append("description", description);
   formData.append("in_stock", in_stock);
+  // newCateArr.forEach(cat => {
+
+  //   formData.append(`${cat}`, cat);
+  // })
 
   const option = {
     method: "POST",
     body: formData,
   };
-  const response = await fetch(`/api/waistbeads/${userId}/new`, option);
+  // const response = await fetch(`/api/waistbeads/${userId}/new`, option);
+  const response = await fetch(`/api/waistbeads/${userId}/new?cates=${newCateArr}`, option);
 
   if (response.ok) {
     const post = await response.json();

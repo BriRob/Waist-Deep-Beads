@@ -1,6 +1,7 @@
+
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Waistbead, db
+from app.models import User, Waistbead, db, Category
 from app.forms.create_wb import CreateWbForm
 
 from app.awsS3 import upload_file_to_s3, allowed_file, get_unique_filename
@@ -29,12 +30,22 @@ def one_wb(bead_id):
 
 
 # create waistbead post
+# @wb_routes.route('/<int:user_id>/new', methods=['POST'])
 @wb_routes.route('/<int:user_id>/new', methods=['POST'])
 @login_required
 def post_wb(user_id):
+    print("\n\n request args length", len(request.args.get('cates')))
+
+
+
+
+
+    # print('\n\n other request args', request.args['cates'])
+    # print(request.args['cates'])
+    # print(request.args['cates'] == False)
     form = CreateWbForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("\n\n here!!!!!\n\n")
+    print("\n\n", dir(request.data))
 
     if form.validate_on_submit():
 
@@ -64,8 +75,17 @@ def post_wb(user_id):
         )
 
         db.session.add(new_wb)
-        # add category append here
+
+        if len(request.args.get('cates')) != 0:
+            print("\n\n request args please...", request.args.get('cates').split(','))
+            sel_cates = request.args.get('cates').split(',')
+            db_sel_cates = [Category.query.filter(Category.category_name == categ).one() for categ in sel_cates]
+            print(db_sel_cates)
+            # add category append here
+            new_wb.categories.extend(db_sel_cates)
+
         db.session.commit()
+        # print('new wb please', new_wb.to_dict())
         return new_wb.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -121,3 +141,10 @@ def delete_wb(bead_id):
     db.session.commit()
     return del_wb.to_dict()
 
+
+# get all categories
+@wb_routes.route('/categories')
+def all_categories():
+    categories = Category.query.all()
+    # print('CATEGORIES!!!! \n\n', categories)
+    return {category.id: category.to_dict() for category in categories}

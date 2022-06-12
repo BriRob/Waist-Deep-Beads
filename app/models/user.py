@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.datetime.now())
 
     waistbeads = db.relationship('Waistbead', back_populates = 'user', cascade='all, delete-orphan', lazy='joined')
-    reviews = db.relationship('Review', back_populates = 'author')
+    reviews = db.relationship('Review', back_populates = 'author', cascade='all, delete-orphan')
 
     @property
     def password(self):

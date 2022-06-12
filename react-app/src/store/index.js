@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import reviewsReducer from './reviews';
 import session from './session'
 import waistbeadsReducer from './waistbeads';
+import categoriesReducer from './categories';
 
 const rootReducer = combineReducers({
   session,
   waistbeadsReducer,
-  reviewsReducer
+  reviewsReducer,
+  categoriesReducer
 });
 
 

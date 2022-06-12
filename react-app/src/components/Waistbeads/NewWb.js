@@ -2,12 +2,22 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { newWaistbeadThunk } from "../../store/waistbeads";
+import "./NewWb.css";
 
-function NewWb({setShowModal}) {
+function NewWb({ setShowModal }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
+  const categories = useSelector(
+    (state) => state.categoriesReducer?.categories
+  );
 
+  console.log(categories);
+  let categoriesArr;
+  if (categories) {
+    categoriesArr = Object.values(categories);
+    console.log(categoriesArr);
+  }
 
   const [beadImgUrl, setBeadImgUrl] = useState("");
   const [name, setName] = useState("");
@@ -15,11 +25,13 @@ function NewWb({setShowModal}) {
   const [desc, setDesc] = useState("");
   const [inStock, setInStock] = useState(true);
 
+  const [selCates, setSelCates] = useState({});
+
   const [errors, setErrors] = useState([]);
 
-  if (!user) {
-    return <Redirect to='/login' />
-  }
+  // if (!user) {
+  //   return <Redirect to='/login' />
+  // }
 
   // useEffect(() => {
   //   dispatch(getOneWaistbead(beadId));
@@ -32,18 +44,35 @@ function NewWb({setShowModal}) {
   // }
 
   const updateImage = async (e) => {
-    const file = e.target.files[0]
-    setBeadImgUrl(file)
-  }
+    const file = e.target.files[0];
+    setBeadImgUrl(file);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(selCates)
+
+    for (let key in selCates) {
+      if (!selCates[key]) {
+
+        // console.log('key is =>', key)
+        delete selCates[key]
+        // console.log('new selcates', selCates)
+      }
+
+      // console.log('selcates[key]', selCates[key])
+    }
+
+    console.log(selCates)
+    const newCateArr = Object.keys(selCates)
+    console.log('\n\n sending to backend!!!', newCateArr)
+
     const bead_img_url = beadImgUrl;
     const in_stock = inStock;
     const description = desc;
     const form = { bead_img_url, name, price, description, in_stock };
 
-    const post = await dispatch(newWaistbeadThunk(user.id, form));
+    const post = await dispatch(newWaistbeadThunk(user.id, form, newCateArr));
 
     // console.log(post);
     if (post.errors) {
@@ -51,15 +80,19 @@ function NewWb({setShowModal}) {
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
-      setShowModal(false)
+      setShowModal(false);
     }
   };
 
+  const handleSelChange = (e) => {
+    setSelCates({...selCates, [e.target.name]: e.target.checked})
+  }
+  console.log('selCates ====> ', selCates)
   // console.log(errors)
 
   return (
-    <>
-      <p>Your New Creation</p>
+    <div className="bigNewWb">
+      <h2>Your New Creation</h2>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
           <div id="errors" key={idx}>
@@ -104,6 +137,20 @@ function NewWb({setShowModal}) {
             placeholder="Optional description here..."
           ></textarea>
         </label>
+        <div>Choose Categories</div>
+        {categoriesArr?.map((cat, idx) => (
+          <div key={idx}>
+            <label>
+              {cat.category_name}
+              <input
+                type="checkbox"
+                name={cat.category_name}
+                checked={selCates[cat.category_name] !== undefined && selCates[cat.category_name] !== false}
+                onChange={handleSelChange}
+              ></input>
+            </label>
+          </div>
+        ))}
         <label>
           In Stock?
           <input
@@ -115,7 +162,7 @@ function NewWb({setShowModal}) {
         <button>Post</button>
         <div>*Required</div>
       </form>
-    </>
+    </div>
   );
 }
 

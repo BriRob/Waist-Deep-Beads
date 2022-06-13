@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { getAllCategories } from "../../store/categories";
 import { getAllReviewsThunk } from "../../store/reviews";
 import {
   deleteWaistbeadThunk,
@@ -63,7 +64,10 @@ function OneWb() {
                 <div>{waistbead.created_at}</div>
                 {sessionUser && waistbead.beader_id === sessionUser.id && (
                   <>
-                    <button onClick={() => setShowEdit(true)}>Edit</button>
+                    <button onClick={async () => {
+                      await dispatch(getAllCategories())
+                      setShowEdit(true)
+                      }}>Edit</button>
                     <button
                       onClick={async () => {
                         await dispatch(deleteWaistbeadThunk(beadId));

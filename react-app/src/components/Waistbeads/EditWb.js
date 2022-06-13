@@ -12,12 +12,36 @@ function EditWb({ hideEdit }) {
   const history = useHistory();
   // const sessionUser = useSelector((state) => state.session.user);
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
+  // categories from state
+  const categories = useSelector(
+    (state) => state.categoriesReducer?.categories
+  );
+
+  let categoriesArr;
+  if (categories) {
+    categoriesArr = Object.values(categories);
+    // console.log('categoriesArr', categoriesArr);
+  }
 
   const [beadImgUrl, setBeadImgUrl] = useState(waistbead?.bead_img_url);
   const [name, setName] = useState(waistbead?.name);
   const [price, setPrice] = useState(waistbead?.price);
   const [desc, setDesc] = useState(waistbead?.description);
   const [inStock, setInStock] = useState(waistbead?.in_stock);
+
+  const [selCates, setSelCates] = useState({});
+
+  // categories from page's WB
+  const cateObj = waistbead.categories;
+
+  // console.log('wb categories obj', cateObj)
+  const cateArr = Object.values(cateObj);
+  // console.log('cateArr \n\n', cateArr)
+  cateArr.forEach((ctg) => {
+    selCates[ctg.category_name] = true;
+    // console.log('CTG!!!!!', ctg.category_name)
+  });
+  // console.log("new selCates \n\n", selCates);
 
   const [errors, setErrors] = useState([]);
 
@@ -30,10 +54,34 @@ function EditWb({ hideEdit }) {
     setBeadImgUrl(file);
   };
 
+  const handleSelChange = (e) => {
+    console.log('event', e)
+    if (selCates[e.target.name]) {
+      // e.target.checked = false
+      selCates[e.target.name] = false
+      console.log('selCates at target name is now false \n\n', selCates[e.target.name])
+    } else {
+      selCates[e.target.name] = true
+      console.log('selCates at target name is now true \n\n', selCates[e.target.name])
+    }
+
+    console.log('e target name', e.target.name)
+    console.log('checked', e.target.checked)
+
+    console.log(selCates[e.target.name] === selCates['Children'])
+    console.log(e.target.name === 'Children')
+    // selCates[e.target.name] = false
+    // e.target.checked = false
+    // setSelCates({...selCates, [e.target.name]: e.target.checked})
+    // setSelCates({...selCates, [e.target.name]: e.target.checked})
+    console.log('selCates ====> ', selCates)
+  }
+
   const handleCancel = (e) => {
     e.preventDefault();
     hideEdit();
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const bead_img_url = beadImgUrl;
@@ -107,6 +155,21 @@ function EditWb({ hideEdit }) {
             ></textarea>
           </label>
         </div>
+        <div>Choose Categories</div>
+        {categoriesArr?.map((cat, idx) => (
+          <div key={idx}>
+            <label>
+              {cat.category_name}
+              <input
+                type="checkbox"
+                name={cat.category_name}
+                checked={selCates[cat.category_name]}
+                // checked={selCates[cat.category_name] !== undefined && selCates[cat.category_name] !== false}
+                onChange={handleSelChange}
+              ></input>
+            </label>
+          </div>
+        ))}
         <div>
           <label>
             In Stock?

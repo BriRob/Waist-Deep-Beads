@@ -5,6 +5,7 @@ import {
   editWaistbeadThunk,
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
+import "./EditWb.css";
 
 function EditWb({ hideEdit }) {
   const { beadId } = useParams();
@@ -43,6 +44,9 @@ function EditWb({ hideEdit }) {
   });
   // console.log("new selCates \n\n", selCates);
 
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewURL, setPreviewUrl] = useState("");
+
   const [errors, setErrors] = useState([]);
 
   useEffect(() => {
@@ -51,31 +55,44 @@ function EditWb({ hideEdit }) {
 
   const updateImage = async (e) => {
     const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+      setPreviewUrl(reader.result);
+    };
+
     setBeadImgUrl(file);
+    setShowPreview(true);
   };
 
   const handleSelChange = (e) => {
-    console.log('event', e)
+    console.log("event", e);
     if (selCates[e.target.name]) {
       // e.target.checked = false
-      selCates[e.target.name] = false
-      console.log('selCates at target name is now false \n\n', selCates[e.target.name])
+      selCates[e.target.name] = false;
+      console.log(
+        "selCates at target name is now false \n\n",
+        selCates[e.target.name]
+      );
     } else {
-      selCates[e.target.name] = true
-      console.log('selCates at target name is now true \n\n', selCates[e.target.name])
+      selCates[e.target.name] = true;
+      console.log(
+        "selCates at target name is now true \n\n",
+        selCates[e.target.name]
+      );
     }
 
-    console.log('e target name', e.target.name)
-    console.log('checked', e.target.checked)
+    console.log("e target name", e.target.name);
+    console.log("checked", e.target.checked);
 
-    console.log(selCates[e.target.name] === selCates['Children'])
-    console.log(e.target.name === 'Children')
+    console.log(selCates[e.target.name] === selCates["Children"]);
+    console.log(e.target.name === "Children");
     // selCates[e.target.name] = false
     // e.target.checked = false
     // setSelCates({...selCates, [e.target.name]: e.target.checked})
     // setSelCates({...selCates, [e.target.name]: e.target.checked})
-    console.log('selCates ====> ', selCates)
-  }
+    console.log("selCates ====> ", selCates);
+  };
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -110,9 +127,9 @@ function EditWb({ hideEdit }) {
             {error}
           </div>
         ))}
-        <div>
-          <label>
-            Upload Photo<span>*</span>
+        <div className="photoUploadEdit">
+          <label className="uploadPhotoBtn" id="upldPhoBtn">
+            Upload One Photo<span>*</span>
             <input
               type="file"
               name="bead_img_url"
@@ -121,6 +138,9 @@ function EditWb({ hideEdit }) {
               accept=".jpg, .jpeg, .png, .gif"
             ></input>
           </label>
+          {showPreview && (
+            <img src={previewURL} className="imgPrvwEdit" alt="preview"></img>
+          )}
         </div>
         <div>
           <label>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import { getAllReviewsThunk } from "../../store/reviews";
 import { newWaistbeadThunk } from "../../store/waistbeads";
 import "./NewWb.css";
 
@@ -90,6 +91,7 @@ function NewWb({ setShowModal }) {
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
+      await dispatch(getAllReviewsThunk(post.id))
       setShowModal(false);
     }
   };

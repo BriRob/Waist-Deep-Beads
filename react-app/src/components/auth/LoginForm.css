@@ -24,7 +24,7 @@
 
 .login-grid {
     display: grid;
-    grid-template-columns: .65fr 1fr;
+    grid-template-columns: .45fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 15px;
     padding-bottom: 10px;
@@ -41,4 +41,38 @@
     margin-right: 10px;
     font-family: 'Berkshire Swash', cursive;
 
+}
+
+.loginBtns {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.bottomDivLogSign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alreadyBecome {
+  /* text-align: center; */
+  font-size: 15px;
+  color: #673398;
+  margin: 15px;
+
+}
+
+.login-signup-btns {
+  background-color: #fff139;
+  font-size: 18px;
+}
+
+.demoBtn {
+  background-color: #cc4dcc;
+  font-size: 18px;
+}
+
+.req {
+  font-size: 12px;
 }

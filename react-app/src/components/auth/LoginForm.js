@@ -45,37 +45,43 @@ const LoginForm = () => {
     <div className="loginformdiv">
       <form onSubmit={onLogin}>
         <h1 className="loginTitle">Log In</h1>
-        <div>
+        {errors && (<div className="signUp-login-errors">
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
-        </div>
+        </div>)}
         <div className="login-grid">
           {/* <div> */}
-            <label htmlFor="email">Email*</label>
-            <input
-              name="email"
-              type="text"
-              // placeholder="Email"
-              value={email}
-              onChange={updateEmail}
-            />
+          <label htmlFor="email">Email*</label>
+          <input
+            name="email"
+            type="text"
+            // placeholder="Email"
+            value={email}
+            onChange={updateEmail}
+          />
           {/* </div> */}
           {/* <div> */}
-            <label htmlFor="password">Password*</label>
-            <input
-              name="password"
-              type="password"
-              // placeholder="Password"
-              value={password}
-              onChange={updatePassword}
-            />
+          <label htmlFor="password">Password*</label>
+          <input
+            name="password"
+            type="password"
+            // placeholder="Password"
+            value={password}
+            onChange={updatePassword}
+          />
           {/* </div> */}
         </div>
-        <button type="submit">Login</button>
-        <button onClick={loginDemo}>Login as Demo User</button>
-        <Link to="/sign-up">Become a Member</Link>
-        <div>*Required</div>
+        <div className="loginBtns">
+          <button class='login-signup-btns' type="submit">Login</button>
+          <button class='demoBtn' onClick={loginDemo}>Login as Demo User</button>
+        </div>
+        <div className="bottomDivLogSign">
+          <Link className="alreadyBecome" to="/sign-up">
+            Become a Waist Deep Member
+          </Link>
+          <div className="req">*Required</div>
+        </div>
       </form>
     </div>
   );

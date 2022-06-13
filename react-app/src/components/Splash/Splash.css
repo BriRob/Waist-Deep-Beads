@@ -1,6 +1,7 @@
 .splash {
-    margin: 0 10%;
+    /* margin: 0 10%; */
     /* background-color: #ded8f6; */
+    width: 73;
 }
 
 .titleAndP {
@@ -10,6 +11,7 @@
     /* margin-bottom: 10px; */
     background-color: #ded8f6;
     border-radius: 7px;
+    min-width: 730px;
 
 }
 
@@ -21,8 +23,8 @@
     margin: 0 5%;
     background-color: #ffccff;
     border-radius: 7px;
-    padding: 5px;
-    min-width: 575px;
+    padding: 10px;
+    min-width: fit-content;
     max-width: 850px;
 
 }
@@ -33,7 +35,7 @@
 
 .eachPost img {
     width: 205px;
-    height: 200px;
+    height: 210px;
     border-radius: 7px;
     object-fit: cover;
 }

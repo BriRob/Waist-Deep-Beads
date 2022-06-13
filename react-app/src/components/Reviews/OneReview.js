@@ -28,8 +28,11 @@ function OneReview({ review, beadId }) {
       )}
       {!showEdit && sessionUser && sessionUser.id === review.author.id && (
         <>
-          <button onClick={() => setShowEdit(true)}>Edit</button>
+          <button className="editBtn" onClick={() => setShowEdit(true)}>
+            Edit
+          </button>
           <button
+            className="delBtn"
             onClick={async () => {
               await dispatch(deleteReviewThunk(review.id));
               await dispatch(getAllReviewsThunk(beadId));

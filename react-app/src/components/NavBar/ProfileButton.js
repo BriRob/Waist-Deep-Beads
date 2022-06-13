@@ -21,10 +21,10 @@ function ProfileButton({ user }) {
   }, [menu]);
 
   return (
-    <div>
-      <span onClick={() => setMenu(true)}>{user.username}</span>
+    <div className="profbtn">
+      <div className="profbtn-usname"onClick={() => setMenu(true)}>{user.username}</div>
       {menu && (
-        <div>
+        <div className="prof-drpdwn">
           <Link to={`/users/${user.id}`}>My Profile</Link>
           <LogoutButton />
         </div>

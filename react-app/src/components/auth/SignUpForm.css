@@ -1,0 +1,44 @@
+.signupformdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    width: 45%;
+    min-width: 450px;
+}
+
+.signUpTitle {
+    text-align: center;
+    padding-bottom: 17px;
+    border-bottom: rgba(0, 0, 0, 0.254) solid 1px;
+}
+
+
+.signupformdiv form {
+  background-color: #ffccff;
+  padding: 15px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5), -3px -3px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  width: 100%;
+
+}
+
+.signup-grid {
+    display: grid;
+    grid-template-columns: .65fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+
+.signup-grid label {
+    text-align: end;
+    font-size: 20px;
+}
+
+.signup-grid input {
+    border: none;
+    border-radius: 5px;
+    font-family: 'Berkshire Swash', cursive;
+
+}

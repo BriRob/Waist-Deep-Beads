@@ -1,26 +1,60 @@
 .oneWbBig {
-display: flex;
-margin: 0 10%;
-/* width: 100%; */
-min-width: 600px;
-max-width: 830px;
-justify-content: space-around;
+  display: flex;
+  margin: 0 10%;
+  width: 85%;
+  min-width: 600px;
+  max-width: 830px;
+  justify-content: space-around;
 }
 
 .oneWbBig img {
-    width: 325px;
-    height: 325px;
-    border-radius: 7px;
-    margin-top: 5%;
+  width: 325px;
+  height: 325px;
+  border-radius: 7px;
+  margin-top: 5%;
 }
 
 .wb-details {
-    width: 400px;
-    height: 400px;
-    /* width: 100%; */
-    border: 1px red solid;
-    margin-left: 20px;
-    background-color: #ffccff;
-    border-radius: 7px;
+  width: 60%;
+  min-width: 375px;
+  height: 500px;
+  /* width: 100%; */
+  /* border: 1px red solid; */
+  margin-left: 20px;
+  background-color: #ffccff;
+  border-radius: 7px;
+}
 
+.wb-details h1{
+  /* margin-left: 10px; */
+  text-align: center;
+}
+
+.wb-details > div {
+  padding: 3px 10px;
+
+}
+
+.priceInStock {
+  display: flex;
+  justify-content: space-between;
+  /* padding: 5px 10px; */
+}
+
+.priceToEnd {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 375px;
+}
+
+.wbPostDate {
+    text-align: center;
+    padding: 10px 5px;
+    font-size: 17px;
+}
+
+.editDelDiv {
+    display: flex;
+    justify-content: space-around;
 }

@@ -26,8 +26,7 @@ function OneWb() {
   useEffect(() => {
     dispatch(getOneWaistbeadThunk(beadId));
     dispatch(getAllReviewsThunk(beadId));
-
-  }, [dispatch, ]);
+  }, [dispatch]);
 
   let categories;
   if (waistbead) {
@@ -48,44 +47,61 @@ function OneWb() {
             <div>Beader: {waistbead.user.username}</div>
 
             {!showEdit && (
-              <>
-                <div>{waistbead.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</div>
-                <div>
-                  In Stock?
-                  {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+              <div className="priceToEnd">
+                <div className="priceToDesc">
+                  <div className="priceInStock">
+                    <div>
+                      {waistbead.price.toLocaleString("en-US", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </div>
+                    <div>
+                      In Stock?
+                      {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+                    </div>
+                  </div>
+                  <div>
+                    categories:
+                    {categories.map((name, idx) => (
+                      <span key={idx}>{name.category_name}</span>
+                    ))}
+                  </div>
+                  <div>{waistbead.description}</div>
                 </div>
                 <div>
-                  categories:
-                  {categories.map((name, idx) => (
-                    <span key={idx}>{name.category_name}</span>
-                  ))}
+                  <div className="wbPostDate">{waistbead.created_at}</div>
+                  {sessionUser && waistbead.beader_id === sessionUser.id && (
+                    <div className="editDelDiv">
+                      <button
+                        className="editBtn"
+                        onClick={async () => {
+                          await dispatch(getAllCategories());
+                          setShowEdit(true);
+                        }}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="delBtn"
+                        onClick={async () => {
+                          await dispatch(deleteWaistbeadThunk(beadId));
+                          await dispatch(getAllWaistbeadsThunk());
+                          return history.push("/");
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
                 </div>
-                <div>{waistbead.description}</div>
-                <div>{waistbead.created_at}</div>
-                {sessionUser && waistbead.beader_id === sessionUser.id && (
-                  <>
-                    <button onClick={async () => {
-                      await dispatch(getAllCategories())
-                      setShowEdit(true)
-                      }}>Edit</button>
-                    <button
-                      onClick={async () => {
-                        await dispatch(deleteWaistbeadThunk(beadId));
-                        await dispatch(getAllWaistbeadsThunk())
-                        return history.push("/");
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </>
-                )}
-              </>
+              </div>
             )}
             {showEdit && <EditWb hideEdit={() => setShowEdit(false)} />}
           </div>
         </div>
       )}
-      {reviews && (<Reviews reviewsObj={reviews}/>)}
+      {reviews && <Reviews reviewsObj={reviews} />}
     </>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
+import { getAllReviewsThunk } from "../../store/reviews";
 import { newWaistbeadThunk } from "../../store/waistbeads";
 import "./NewWb.css";
 
@@ -12,11 +13,11 @@ function NewWb({ setShowModal }) {
     (state) => state.categoriesReducer?.categories
   );
 
-  console.log(categories);
+  // console.log(categories);
   let categoriesArr;
   if (categories) {
     categoriesArr = Object.values(categories);
-    console.log(categoriesArr);
+    // console.log(categoriesArr);
   }
 
   const [beadImgUrl, setBeadImgUrl] = useState("");
@@ -26,6 +27,9 @@ function NewWb({ setShowModal }) {
   const [inStock, setInStock] = useState(true);
 
   const [selCates, setSelCates] = useState({});
+
+  const [showPreview, setShowPreview] = useState(false)
+  const [previewURL, setPreviewUrl] = useState('')
 
   const [errors, setErrors] = useState([]);
 
@@ -45,7 +49,14 @@ function NewWb({ setShowModal }) {
 
   const updateImage = async (e) => {
     const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file)
+    reader.onload = function (e) {
+      setPreviewUrl(reader.result)
+    }
+
     setBeadImgUrl(file);
+    setShowPreview(true)
   };
 
   const handleSubmit = async (e) => {
@@ -63,9 +74,9 @@ function NewWb({ setShowModal }) {
       // console.log('selcates[key]', selCates[key])
     }
 
-    console.log(selCates)
+    // console.log(selCates)
     const newCateArr = Object.keys(selCates)
-    console.log('\n\n sending to backend!!!', newCateArr)
+    // console.log('\n\n sending to backend!!!', newCateArr)
 
     const bead_img_url = beadImgUrl;
     const in_stock = inStock;
@@ -80,14 +91,22 @@ function NewWb({ setShowModal }) {
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
+      await dispatch(getAllReviewsThunk(post.id))
       setShowModal(false);
     }
+  };
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    // hideRev()
+    // close modal
+    setShowModal(false)
   };
 
   const handleSelChange = (e) => {
     setSelCates({...selCates, [e.target.name]: e.target.checked})
   }
-  console.log('selCates ====> ', selCates)
+  // console.log('selCates ====> ', selCates)
   // console.log(errors)
 
   return (
@@ -99,8 +118,8 @@ function NewWb({ setShowModal }) {
             {error}
           </div>
         ))}
-        <label>
-          Upload Photo<span>*</span>
+        <label className="uploadPhotoBtn">
+          Upload One Photo<span>*</span>
           <input
             type="file"
             name="bead_img_url"
@@ -109,6 +128,9 @@ function NewWb({ setShowModal }) {
             accept=".jpg, .jpeg, .png, .gif"
           ></input>
         </label>
+        {showPreview && (
+          <img src={previewURL} className='imgPrvw' alt='preview'></img>
+        )}
         <label>
           Name of Creation<span>*</span>
           <input
@@ -160,6 +182,7 @@ function NewWb({ setShowModal }) {
           ></input>
         </label>
         <button>Post</button>
+        <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>
       </form>
     </div>

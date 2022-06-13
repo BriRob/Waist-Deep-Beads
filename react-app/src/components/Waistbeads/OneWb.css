@@ -7,11 +7,12 @@
   justify-content: space-around;
 }
 
-.oneWbBig img {
-  width: 325px;
-  height: 325px;
+.wbPic {
+  width: 425px;
+  height: 375px;
   border-radius: 7px;
   margin-top: 5%;
+  object-fit: cover;
 }
 
 .wb-details {
@@ -23,14 +24,16 @@
   margin-left: 20px;
   background-color: #ffccff;
   border-radius: 7px;
+  padding: 0 10px;
+  overflow-y: scroll;
 }
 
-.wb-details h1{
+.wb-details h1, .wb-details h3 {
   /* margin-left: 10px; */
   text-align: center;
 }
 
-.wb-details > div {
+.wb-details > div, .wb-details form {
   padding: 3px 10px;
 
 }
@@ -57,4 +60,8 @@
 .editDelDiv {
     display: flex;
     justify-content: space-around;
+}
+
+.wb-details h3 {
+
 }

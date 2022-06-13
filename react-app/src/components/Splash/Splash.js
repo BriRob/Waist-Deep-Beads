@@ -18,6 +18,7 @@ function Splash() {
 
   return (
     <div className="splash">
+      {/* <i className="fa-solid fa-plus-large"></i> */}
       <div className="titleAndP">
         <h1>Welcome to Waist Deep Beads</h1>
         <p>Share your waistbead creations and review other beaders' creations</p>

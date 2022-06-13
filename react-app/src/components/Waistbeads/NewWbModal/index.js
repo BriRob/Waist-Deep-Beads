@@ -22,7 +22,8 @@ function NewWbModal() {
   };
   return (
     <>
-      <button className='newWbbtn' onClick={() => stateOfAdd()}>+</button>
+
+      <button className='newWbbtn' onClick={() => stateOfAdd()}><i className="fa-solid fa-plus"></i></button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <NewWb setShowModal={setShowModal}/>

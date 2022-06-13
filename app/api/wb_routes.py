@@ -36,10 +36,6 @@ def one_wb(bead_id):
 def post_wb(user_id):
     print("\n\n request args length", len(request.args.get('cates')))
 
-
-
-
-
     # print('\n\n other request args', request.args['cates'])
     # print(request.args['cates'])
     # print(request.args['cates'] == False)
@@ -95,10 +91,11 @@ def post_wb(user_id):
 @wb_routes.route('/<int:bead_id>/edit', methods=['GET', 'PUT'])
 @login_required
 def edit_wb(bead_id):
+    # print("\n\n request args length", len(request.args.get('cates')))
+
     editing_wb = Waistbead.query.get(bead_id)
     form = CreateWbForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print("\n\n here!!!!!\n\n")
 
     if form.validate_on_submit():
 
@@ -124,7 +121,41 @@ def edit_wb(bead_id):
         editing_wb.in_stock = form.data['in_stock']
 
         db.session.add(editing_wb)
-        # add category append here
+        
+        # add category changes here
+        if len(request.args.get('cates')) != 0:
+            # print('\n\n editing categories OLD', editing_wb.categories, '\n\n')
+            # edit_categs = editing_wb.categories
+            old_categ_names = [categ.category_name for categ in editing_wb.categories]
+            # print('old categ names \n\n', old_categ_names, '\n\n')
+            new_categ_names = request.args.get('cates').split(',')
+            # print('new categ names \n\n', new_categ_names, '\n\n')
+
+            for cat in old_categ_names:
+                if cat in new_categ_names:
+                    # print(f'{cat} is in new_categ_names' )
+                    continue
+                else:
+                    # print(f'need to remove {cat}!!')
+                    removingCat = Category.query.filter(Category.category_name == cat).one()
+                    editing_wb.categories.remove(removingCat)
+
+            for newCat in new_categ_names:
+                if newCat in old_categ_names:
+                    # print(f'{newCat} is in old_categ_names' )
+                    continue
+                else:
+                    # print(f'adding {newCat} to categories!!')
+                    addingCat = Category.query.filter(Category.category_name == newCat).one()
+                    editing_wb.categories.append(addingCat)
+
+            # print('final editwb.categories\n\n', editing_wb.categories, '\n\n')
+        else:
+            old_cat_names = [categ.category_name for categ in editing_wb.categories]
+            for oldCat in old_cat_names:
+                removeCat = Category.query.filter(Category.category_name == oldCat).one()
+                editing_wb.categories.remove(removeCat)
+
         db.session.commit()
         return editing_wb.to_dict()
 

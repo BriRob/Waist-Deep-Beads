@@ -25,6 +25,11 @@
   border-radius: 7px;
 }
 
+.wb-details h1{
+  /* margin-left: 10px; */
+  text-align: center;
+}
+
 .wb-details > div {
   padding: 3px 10px;
 

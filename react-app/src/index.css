@@ -2,7 +2,7 @@ body {
     margin: 0px;
 }
 .underNav {
-    padding-top: 70px;
+    padding-top: 90px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -36,4 +36,8 @@ button {
 .delBtn {
     background-color: #a8babd;
     font-size: 17px;
+}
+
+a {
+    text-decoration: none;
 }

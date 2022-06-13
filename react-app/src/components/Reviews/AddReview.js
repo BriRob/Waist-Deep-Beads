@@ -53,7 +53,8 @@ function AddReview({hideRev, setShowModal}) {
 
 
   return (
-    <>
+    <div className="bigNewRev">
+
       <h2>Add Your Review</h2>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
@@ -78,7 +79,7 @@ function AddReview({hideRev, setShowModal}) {
         <div>
           <label>
             <textarea
-              placeholder="Add your comments"
+              placeholder="Add comments"
               name="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
@@ -90,7 +91,7 @@ function AddReview({hideRev, setShowModal}) {
         <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>
       </form>
-    </>
+    </div>
   );
 }
 

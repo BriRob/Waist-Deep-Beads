@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import ProfileButton from "./ProfileButton";
 import "./NavBar.css";
 import NewWbModal from "../Waistbeads/NewWbModal";
+import wdb_small from "../../images/wdb_small.png";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -13,9 +14,9 @@ const NavBar = () => {
   if (sessionUser) {
     navbar = (
       // <div>
-        <ProfileButton user={sessionUser} />
+      <ProfileButton user={sessionUser} />
       /* </div> */
-    )
+    );
   } else {
     navbar = (
       <>
@@ -36,12 +37,11 @@ const NavBar = () => {
   return (
     <nav id="nav">
       <div className="allNav">
-        <div className="navLinks">
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+        <div className="logoNavLink">
+          <NavLink to="/" exact={true} activeClassName="active" >
+            <img src={wdb_small} className="logo-btn"></img>
           </NavLink>
         </div>
-
         {/* <span className="navLinks">
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
@@ -52,7 +52,7 @@ const NavBar = () => {
           {/* <NavLink to="/waistbeads/new" exact={true} activeClassName="active">
             New Post
           </NavLink> */}
-        {navbar}
+          {navbar}
         </div>
       </div>
     </nav>

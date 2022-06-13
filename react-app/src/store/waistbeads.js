@@ -74,11 +74,11 @@ export const newWaistbeadThunk = (userId, form, newCateArr) => async (dispatch) 
   // return response
 };
 
-export const editWaistbeadThunk = (beadId, form) => async (dispatch) => {
+export const editWaistbeadThunk = (beadId, form, newCateArr) => async (dispatch) => {
   const { bead_img_url, name, price, description, in_stock } = form;
   const formData = new FormData();
 
-  //   console.log("in thunk!!!")
+    console.log(newCateArr, "in edit thunk!!!")
   formData.append("bead_img_url", bead_img_url);
   formData.append("name", name);
   formData.append("price", price);
@@ -89,7 +89,7 @@ export const editWaistbeadThunk = (beadId, form) => async (dispatch) => {
     method: "PUT",
     body: formData,
   };
-  const response = await fetch(`/api/waistbeads/${beadId}/edit`, option);
+  const response = await fetch(`/api/waistbeads/${beadId}/edit?cates=${newCateArr}`, option);
 
   if (response.ok) {
     const bead = await response.json();

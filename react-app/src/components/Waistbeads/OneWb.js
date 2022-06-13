@@ -19,7 +19,7 @@ function OneWb() {
   const sessionUser = useSelector((state) => state.session?.user);
   const waistbead = useSelector((state) => state.waistbeadsReducer?.waistbead);
   const reviews = useSelector((state) => state.reviewsReducer?.reviews);
-  console.log("waistbead", waistbead);
+  // console.log("waistbead", waistbead);
 
   const [showEdit, setShowEdit] = useState(false);
 

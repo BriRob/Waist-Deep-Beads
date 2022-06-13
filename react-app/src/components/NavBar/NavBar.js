@@ -12,9 +12,9 @@ const NavBar = () => {
   let navbar;
   if (sessionUser) {
     navbar = (
-      <div>
+      // <div>
         <ProfileButton user={sessionUser} />
-      </div>
+      /* </div> */
     )
   } else {
     navbar = (
@@ -36,24 +36,24 @@ const NavBar = () => {
   return (
     <nav id="nav">
       <div className="allNav">
-        <span className="navLinks">
+        <div className="navLinks">
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
-        </span>
+        </div>
 
         {/* <span className="navLinks">
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
         </span> */}
-        <span className="navLinks">
+        <div className="right-nav">
           <NewWbModal />
           {/* <NavLink to="/waistbeads/new" exact={true} activeClassName="active">
             New Post
           </NavLink> */}
-        </span>
         {navbar}
+        </div>
       </div>
     </nav>
   );

@@ -6,6 +6,7 @@ import ProfileButton from "./ProfileButton";
 import "./NavBar.css";
 import NewWbModal from "../Waistbeads/NewWbModal";
 import wdb_small from "../../images/wdb_small.png";
+import CategoriesDropdown from "../Categories/CategoriesDropdown";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -41,6 +42,9 @@ const NavBar = () => {
           <NavLink to="/" exact={true} activeClassName="active" >
             <img src={wdb_small} className="logo-btn"></img>
           </NavLink>
+        </div>
+        <div>
+          <CategoriesDropdown />
         </div>
         {/* <span className="navLinks">
           <NavLink to="/users" exact={true} activeClassName="active">

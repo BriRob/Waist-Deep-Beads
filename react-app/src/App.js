@@ -21,7 +21,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      await dispatch(getAllCategories())
+      // await dispatch(getAllCategories())
       setLoaded(true);
     })();
   }, [dispatch]);

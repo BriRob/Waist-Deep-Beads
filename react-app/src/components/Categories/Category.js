@@ -1,36 +1,59 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getAllCategories, getOneCategory } from "../../store/categories";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import './Category.css'
+
 function Category() {
+    const {pathname} = useLocation()
   const { catId } = useParams();
   const dispatch = useDispatch();
   const category = useSelector(
-    (state) => state.categoriesReducer?.categories[catId]
+    (state) => state.categoriesReducer?.category_wbs?.category
   );
   const category_wbs = useSelector(
-    (state) => state.categoriesReducer?.category_wbs
+    (state) => state.categoriesReducer?.category_wbs?.wbs_dict
   );
 
   let wbArr;
   if (category_wbs) {
     wbArr = Object.values(category_wbs);
   }
-  console.log(category);
-  console.log(wbArr);
+
+//   const [isLoaded, setIsLoaded] = useState(false)
+
+  console.log('category \n\n', category);
+  console.log('wbArr \n\n', wbArr);
 
   useEffect(() => {
-      dispatch(getAllCategories())
-    dispatch(getOneCategory(catId));
-  }, [dispatch]);
+    //   (async () => {
+        dispatch(getAllCategories())
+        dispatch(getOneCategory(catId));
 
+    // })()
+    // if (pathname !== `/categories/${catId}`) {
+
+    //     window.location.reload()
+    // }
+
+    // return () => setIsLoaded(true)
+
+}, [dispatch]);
+
+// if (!isLoaded) {
+
+    //   return (
+    //       <h1>Loading...</h1>
+    //   )
+//   }
   return (
+    //   null
     <>
       {category && category_wbs && (
         <div>
-          <h1>Results for "{category.category_name}"</h1>
-          <div className="splashPosts">
-            {wbArr.map((bead, idx) => (
+          <h1 className="catNameTitle">Waistbeads for "{category.category_name}"</h1>
+          <div className="splashPosts catPosts">
+            {wbArr?.map((bead, idx) => (
               <Link
                 to={`/waistbeads/${bead.id}`}
                 key={idx}

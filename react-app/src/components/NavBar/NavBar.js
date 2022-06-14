@@ -38,12 +38,12 @@ const NavBar = () => {
   return (
     <nav id="nav">
       <div className="allNav">
-        <div className="logoNavLink">
-          <NavLink to="/" exact={true} activeClassName="active" >
-            <img src={wdb_small} className="logo-btn"></img>
-          </NavLink>
-        </div>
-        <div>
+        <div className="left-nav">
+          <div className="logoNavLink">
+            <NavLink to="/" exact={true} activeClassName="active">
+              <img src={wdb_small} className="logo-btn"></img>
+            </NavLink>
+          </div>
           <CategoriesDropdown />
         </div>
         {/* <span className="navLinks">

@@ -1,5 +1,7 @@
 .bigNewWb {
     width: 400px;
+    height: 575px;
+    overflow-y: scroll;
 }
 .bigNewWb form {
   display: flex;
@@ -42,4 +44,84 @@
     cursor: pointer;
     color: rgb(208, 205, 205);
 
+}
+
+.namePrice {
+  width: 100%;
+  display: grid;
+  grid-template-columns: .7fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 7px 0;
+  font-size: 18px;
+}
+
+.namePrice label {
+  text-align: end;
+  width: 100%;
+}
+
+.namePrice input, .newWbTxtA {
+  /* width: 200px; */
+  border-radius: 3px;
+  border: none;
+  font-family: 'Berkshire Swash', cursive;
+}
+
+
+.newWbTxtALabel{
+  margin: 10px 0;
+  width: 80%;
+}
+
+.newWbTxtA {
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.bigCateg {
+border-top: 1px solid black;
+border-bottom: 1px solid black;
+width: 92%;
+}
+
+.innerCateg{
+  margin: 5px 12px;
+}
+
+.catTitle {
+  font-size: 19px;
+  text-align: center;
+}
+
+.categs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.inStock {
+  margin: 10px 0;
+  font-size: 19px;
+
+}
+
+.postCancelbtns {
+  display: flex;
+  justify-content: space-around;
+  width: 85%;
+  margin: 5px 0;
+}
+
+.postbtn {
+  background-color: #ffccff;
+  font-size: 18px;
+}
+
+.cancelbtn {
+  background-color: #5583c6;
+  color: rgb(208, 205, 205);
+  font-size: 18px;
 }

@@ -10,6 +10,7 @@ category_routes = Blueprint('categories', __name__)
 def all_categories():
     categories = Category.query.all()
     # print('CATEGORIES!!!! \n\n', categories)
+    print("\n\n", {category.id: category.to_dict() for category in categories}, "\n\n")
     return {category.id: category.to_dict() for category in categories}
 
 # get all waistbeads from a category

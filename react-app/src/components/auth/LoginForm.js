@@ -47,7 +47,7 @@ const LoginForm = () => {
         <h1 className="loginTitle">Log In</h1>
         {errors && (<div className="signUp-login-errors">
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} id="errors">{error}</div>
           ))}
         </div>)}
         <div className="login-grid">

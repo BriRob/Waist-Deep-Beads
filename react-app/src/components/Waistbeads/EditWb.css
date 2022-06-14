@@ -1,10 +1,25 @@
 .wb-details h3 {
-    margin: 0;
+  text-align: center;
+  /* margin: 0; */
+  margin-top: 13px;
+  /* margin-bottom: 0; */
+  border-bottom: solid #0d020266 1px;
+  padding-bottom: 7px;
 }
-.photoUploadEdit {
-    display: flex;
-    flex-direction: column;
 
+.editWbBig {
+  overflow-y: scroll;
+}
+
+.editWbBig form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photoUploadEdit {
+  display: flex;
+  flex-direction: column;
 }
 #upldPhoBtn input[type="file"] {
   position: absolute;
@@ -18,8 +33,37 @@
 }
 
 .imgPrvwEdit {
-    height: 200px;
-    max-width: 275px;
-    /* margin-bottom: 10px; */
-    object-fit: contain;
+  height: 200px;
+  max-width: 275px;
+  margin: 10px 0;
+  object-fit: contain;
+}
+
+.namePriceEdit {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.7fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  padding: 7px 0;
+  font-size: 18px;
+}
+
+.namePriceEdit label {
+  text-align: end;
+  width: 100%;
+}
+
+.namePriceEdit input {
+  /* width: 200px; */
+  border-radius: 3px;
+  border: none;
+  font-family: "Berkshire Swash", cursive;
+}
+
+.postBtnEdit {
+  background-color: #673398;
+  color: rgb(208, 205, 205);
+
+  font-size: 18px;
 }

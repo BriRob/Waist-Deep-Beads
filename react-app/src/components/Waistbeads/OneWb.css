@@ -28,7 +28,7 @@
   overflow-y: scroll;
 }
 
-.wb-details h1, .wb-details h3 {
+.wb-details h1 {
   /* margin-left: 10px; */
   text-align: center;
   margin-top: 20px;
@@ -37,7 +37,7 @@
   padding-bottom: 7px;
 }
 
-.wb-details > div, .wb-details form {
+.wb-details > div {
   padding: 3px 10px;
 
 }

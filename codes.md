@@ -21,3 +21,11 @@ const ratingChanged = (rating) => {
 
 import simplejson as json
 json.dumps(self.price, use_decimal=True)
+
+IN CASE HEROKU DB DOESN'T WANT TO WORK
+    heroku run -a waist-deep-beads flask db upgrade
+    heroku run -a waist-deep-beads flask seed undo
+    heroku run -a waist-deep-beads flask seed all
+
+    heroku pg:psql -a waist-deep-beads
+    heroku logs -a waist-deep-beads

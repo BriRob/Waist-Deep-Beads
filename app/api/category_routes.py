@@ -18,4 +18,5 @@ def all_categories():
 def one_category(cat_id):
     category = Category.query.get(cat_id)
     # print(category.waistbeads)
-    return {bead.id: bead.to_dict() for bead in category.waistbeads}
+    wbs_dict = {bead.id: bead.to_dict() for bead in category.waistbeads}
+    return {'category': category.to_dict(), 'wbs_dict': wbs_dict}

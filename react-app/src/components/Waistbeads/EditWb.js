@@ -125,9 +125,8 @@ function EditWb({ hideEdit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('in handle submit!!! \n\n', selCates)
-    const newCateArr = Object.keys(selCates)
-
+    console.log("in handle submit!!! \n\n", selCates);
+    const newCateArr = Object.keys(selCates);
 
     const bead_img_url = beadImgUrl;
     const in_stock = inStock;
@@ -147,7 +146,7 @@ function EditWb({ hideEdit }) {
   };
 
   return (
-    <>
+    <div className="editWbBig">
       <h3>Edit Your Creation</h3>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
@@ -157,7 +156,7 @@ function EditWb({ hideEdit }) {
         ))}
         <div className="photoUploadEdit">
           <label className="uploadPhotoBtn" id="upldPhoBtn">
-            Upload One Photo<span>*</span>
+            Upload New Photo
             <input
               type="file"
               name="bead_img_url"
@@ -170,69 +169,74 @@ function EditWb({ hideEdit }) {
             <img src={previewURL} className="imgPrvwEdit" alt="preview"></img>
           )}
         </div>
-        <div>
+        <div className="namePriceEdit">
           <label>
             Name of Creation<span>*</span>
-            <input
-              type="text"
-              name="name"
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              // placeholder="Name.."
-            ></input>
           </label>
-        </div>
-        <div>
+          <input
+            type="text"
+            name="name"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            // placeholder="Name.."
+          ></input>
           <label>
             Price<span>*</span>
-            <input
-              type="number"
-              name="price"
-              onChange={(e) => setPrice(e.target.value)}
-              value={price}
-            ></input>
           </label>
+          <input
+            type="number"
+            name="price"
+            onChange={(e) => setPrice(e.target.value)}
+            value={price}
+          ></input>
         </div>
-        <div>
-          <label>
-            <textarea
-              name="description"
-              onChange={(e) => setDesc(e.target.value)}
-              value={desc}
-              placeholder="Optional description here..."
-            ></textarea>
-          </label>
-        </div>
-        <div>Choose Categories</div>
-        {categoriesArr?.map((cat, idx) => (
-          <div key={idx}>
-            <label>
-              {cat.category_name}
-              <input
-                type="checkbox"
-                name={cat.category_name}
-                checked={selCates[cat.category_name] !== undefined}
-                // checked={selCates[cat.category_name] !== undefined && selCates[cat.category_name] !== false}
-                onChange={(e) => handleSelChange(e, cat.category_name)}
-              ></input>
-            </label>
+        <label className="newWbTxtALabel">
+          <textarea
+            className="newWbTxtA"
+            name="description"
+            onChange={(e) => setDesc(e.target.value)}
+            value={desc}
+            placeholder="Optional description here..."
+          ></textarea>
+        </label>
+        <div className="bigCateg">
+          <div className="innerCateg">
+            <div className="catTitle">Choose Categories</div>
+            <div className="categs">
+              {categoriesArr?.map((cat, idx) => (
+                <div key={idx}>
+                  <label>
+                    {cat.category_name}
+                    <input
+                      type="checkbox"
+                      name={cat.category_name}
+                      checked={selCates[cat.category_name] !== undefined}
+                      // checked={selCates[cat.category_name] !== undefined && selCates[cat.category_name] !== false}
+                      onChange={(e) => handleSelChange(e, cat.category_name)}
+                    ></input>
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-        <div>
-          <label>
-            In Stock?
-            <input
-              type="checkbox"
-              onChange={(e) => setInStock(!inStock)}
-              checked={inStock}
-            ></input>
-          </label>
         </div>
-        <button>Post</button>
-        <button onClick={handleCancel}>Cancel</button>
+        {/* <div> */}
+        <label className="inStock">
+          In Stock?
+          <input
+            type="checkbox"
+            onChange={(e) => setInStock(!inStock)}
+            checked={inStock}
+          ></input>
+        </label>
+        {/* </div> */}
+        <div className="postCancelbtns">
+        <button className="postBtnEdit">Post</button>
+          <button className="cancelbtn" onClick={handleCancel}>Cancel</button>
+        </div>
         <div>*Required</div>
       </form>
-    </>
+    </div>
   );
 }
 

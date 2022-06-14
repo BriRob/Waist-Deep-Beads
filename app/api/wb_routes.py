@@ -121,7 +121,7 @@ def edit_wb(bead_id):
         editing_wb.in_stock = form.data['in_stock']
 
         db.session.add(editing_wb)
-        
+
         # add category changes here
         if len(request.args.get('cates')) != 0:
             # print('\n\n editing categories OLD', editing_wb.categories, '\n\n')
@@ -173,9 +173,3 @@ def delete_wb(bead_id):
     return del_wb.to_dict()
 
 
-# get all categories
-@wb_routes.route('/categories')
-def all_categories():
-    categories = Category.query.all()
-    # print('CATEGORIES!!!! \n\n', categories)
-    return {category.id: category.to_dict() for category in categories}

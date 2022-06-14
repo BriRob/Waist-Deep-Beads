@@ -73,8 +73,8 @@ const LoginForm = () => {
           {/* </div> */}
         </div>
         <div className="loginBtns">
-          <button class='login-signup-btns' type="submit">Login</button>
-          <button class='demoBtn' onClick={loginDemo}>Login as Demo User</button>
+          <button className='login-signup-btns' type="submit">Login</button>
+          <button className='demoBtn' onClick={loginDemo}>Login as Demo User</button>
         </div>
         <div className="bottomDivLogSign">
           <Link className="alreadyBecome" to="/sign-up">

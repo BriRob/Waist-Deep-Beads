@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getAllCategories } from "../../store/categories";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function CategoriesDropdown() {
   const dispatch = useDispatch();
@@ -17,20 +18,33 @@ function CategoriesDropdown() {
   }
   console.log("categoriesArr", categoriesArr);
 
+  const openMenu = () => {
+      setShowCat(true)
+  }
+  const closeMenu = () => {
+      setShowCat(false)
+  }
+  
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  //   const catMenu = (<div>Hello</div>)
+  useEffect(() => {
+      if (!showCat) return
+      document.addEventListener("click", closeMenu);
+      return () => document.removeEventListener("click", closeMenu);
+
+  }, [showCat])
+
   return (
     <div>
       {categoriesArr && (
         <>
-          <div onClick={() => setShowCat(!showCat)}>Categories Here</div>
+          <div onClick={openMenu}>Categories Here</div>
           {showCat && (categoriesArr.map((cat, idx) => (
-            <div key={idx}>
+            <Link key={idx} to={`/categories/${cat.id}`}>
                 {cat.category_name}
-            </div>
+            </Link>
           )))}
         </>
       )}

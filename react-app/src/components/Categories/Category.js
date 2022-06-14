@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { getOneCategory } from "../../store/categories";
+import { getAllCategories, getOneCategory } from "../../store/categories";
 import { useEffect } from "react";
 function Category() {
   const { catId } = useParams();
@@ -20,6 +20,7 @@ function Category() {
   console.log(wbArr);
 
   useEffect(() => {
+      dispatch(getAllCategories())
     dispatch(getOneCategory(catId));
   }, [dispatch]);
 

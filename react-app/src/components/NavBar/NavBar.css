@@ -17,6 +17,12 @@ nav {
 
 }
 
+.left-nav {
+    /* width: 244px; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
 .logoNavLink {
     margin-left: 5px;
 }

@@ -45,7 +45,7 @@ function CategoriesDropdown() {
   };
 
   return (
-    <div>
+    <div className="outerDropdown">
       {categoriesArr && (
         <>
           <div className="catDropdown" onClick={openMenu}>Categories</div>

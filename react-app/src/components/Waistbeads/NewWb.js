@@ -28,8 +28,8 @@ function NewWb({ setShowModal }) {
 
   const [selCates, setSelCates] = useState({});
 
-  const [showPreview, setShowPreview] = useState(false)
-  const [previewURL, setPreviewUrl] = useState('')
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewURL, setPreviewUrl] = useState("");
 
   const [errors, setErrors] = useState([]);
 
@@ -50,24 +50,23 @@ function NewWb({ setShowModal }) {
   const updateImage = async (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
-    reader.readAsDataURL(file)
+    reader.readAsDataURL(file);
     reader.onload = function (e) {
-      setPreviewUrl(reader.result)
-    }
+      setPreviewUrl(reader.result);
+    };
 
     setBeadImgUrl(file);
-    setShowPreview(true)
+    setShowPreview(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selCates)
+    console.log(selCates);
 
     for (let key in selCates) {
       if (!selCates[key]) {
-
         // console.log('key is =>', key)
-        delete selCates[key]
+        delete selCates[key];
         // console.log('new selcates', selCates)
       }
 
@@ -75,7 +74,7 @@ function NewWb({ setShowModal }) {
     }
 
     // console.log(selCates)
-    const newCateArr = Object.keys(selCates)
+    const newCateArr = Object.keys(selCates);
     // console.log('\n\n sending to backend!!!', newCateArr)
 
     const bead_img_url = beadImgUrl;
@@ -91,7 +90,7 @@ function NewWb({ setShowModal }) {
       setErrors(post.errors);
     } else {
       history.push(`/waistbeads/${post.id}`);
-      await dispatch(getAllReviewsThunk(post.id))
+      await dispatch(getAllReviewsThunk(post.id));
       setShowModal(false);
     }
   };
@@ -100,12 +99,12 @@ function NewWb({ setShowModal }) {
     e.preventDefault();
     // hideRev()
     // close modal
-    setShowModal(false)
+    setShowModal(false);
   };
 
   const handleSelChange = (e) => {
-    setSelCates({...selCates, [e.target.name]: e.target.checked})
-  }
+    setSelCates({ ...selCates, [e.target.name]: e.target.checked });
+  };
   // console.log('selCates ====> ', selCates)
   // console.log(errors)
 
@@ -129,10 +128,12 @@ function NewWb({ setShowModal }) {
           ></input>
         </label>
         {showPreview && (
-          <img src={previewURL} className='imgPrvw' alt='preview'></img>
+          <img src={previewURL} className="imgPrvw" alt="preview"></img>
         )}
-        <label>
-          Name of Creation<span>*</span>
+        <div className="namePrice">
+          <label>
+            Name of Creation<span>*</span>
+          </label>
           <input
             type="text"
             name="name"
@@ -140,9 +141,9 @@ function NewWb({ setShowModal }) {
             value={name}
             // placeholder="Name.."
           ></input>
-        </label>
-        <label>
-          Price<span>*</span>
+          <label>
+            Price<span>*</span>
+          </label>
           <input
             type="number"
             name="price"
@@ -150,30 +151,40 @@ function NewWb({ setShowModal }) {
             min={1}
             value={price}
           ></input>
-        </label>
-        <label>
+        </div>
+        <label className="newWbTxtALabel">
           <textarea
+            className="newWbTxtA"
             name="description"
             onChange={(e) => setDesc(e.target.value)}
             value={desc}
             placeholder="Optional description here..."
           ></textarea>
         </label>
-        <div>Choose Categories</div>
-        {categoriesArr?.map((cat, idx) => (
-          <div key={idx}>
-            <label>
-              {cat.category_name}
-              <input
-                type="checkbox"
-                name={cat.category_name}
-                checked={selCates[cat.category_name] !== undefined && selCates[cat.category_name] !== false}
-                onChange={handleSelChange}
-              ></input>
-            </label>
+        <div className="bigCateg">
+          <div className="innerCateg">
+            <div className="catTitle">Choose Categories</div>
+            <div className="categs">
+              {categoriesArr?.map((cat, idx) => (
+                <div key={idx}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name={cat.category_name}
+                      checked={
+                        selCates[cat.category_name] !== undefined &&
+                        selCates[cat.category_name] !== false
+                      }
+                      onChange={handleSelChange}
+                    ></input>
+                    {cat.category_name}
+                  </label>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-        <label>
+        </div>
+        <label className="inStock">
           In Stock?
           <input
             type="checkbox"
@@ -181,8 +192,10 @@ function NewWb({ setShowModal }) {
             checked={inStock}
           ></input>
         </label>
-        <button>Post</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <div className="postCancelbtns">
+          <button className="postbtn">Post</button>
+          <button className="cancelbtn" onClick={handleCancel}>Cancel</button>
+        </div>
         <div>*Required</div>
       </form>
     </div>

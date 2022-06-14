@@ -11,6 +11,8 @@ import { authenticate } from "./store/session";
 import Splash from "./components/Splash/Splash";
 import OneWb from "./components/Waistbeads/OneWb";
 import NewWb from "./components/Waistbeads/NewWb";
+import Category from "./components/Categories/Category";
+import { getAllCategories } from "./store/categories";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -19,6 +21,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getAllCategories())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -52,6 +55,9 @@ function App() {
           </Route>
           <Route path="/waistbeads/:beadId" exact={true}>
             <OneWb />
+          </Route>
+          <Route path="/categories/:catId" exact={true}>
+            <Category />
           </Route>
         </Switch>
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { getAllCategories } from "../../store/categories";
 import { getAllReviewsThunk } from "../../store/reviews";
 import {
@@ -68,10 +68,12 @@ function OneWb() {
                   <div className="categories">
                     <div className="categoriesT">categories:</div>
                     <div className="allCategories">
-                      {categories.map((name, idx) => (
+                      {categories.map((categ, idx) => (
+                        <Link key={idx} to={`/categories/${categ.id}`}>
                         <div className="eachCategory" key={idx}>
-                          {name.category_name}
+                          {categ.category_name}
                         </div>
+                        </Link>
                       ))}
                     </div>
                   </div>

@@ -31,6 +31,10 @@
 .wb-details h1, .wb-details h3 {
   /* margin-left: 10px; */
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+  border-bottom: solid #0d020266 1px;
+  padding-bottom: 7px;
 }
 
 .wb-details > div, .wb-details form {
@@ -62,6 +66,48 @@
     justify-content: space-around;
 }
 
-.wb-details h3 {
+.categories {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* border: solid red 1px; */
+  padding: 5px 0;
+}
 
+.categoriesT {
+  margin-bottom: 5px;
+}
+
+
+.allCategories {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+
+}
+
+.eachCategory {
+  /* border: solid green 1px; */
+  border-radius: 3px;
+  width: fit-content;
+  background-color: #690e37;
+  color:rgb(208, 205, 205);
+  padding: 3px;
+  margin: 3px 0;
+  font-size: 15px;
+}
+
+.beader {
+  margin-top: 10px;
+}
+
+.wbDesc {
+  margin-top: 5px;
+  border-top: 1px solid black;
+  padding-top: 7px;
+  overflow-y: scroll;
+  /* word-break: break-all; */
+  /* overflow-wrap: break-word; */
+  white-space: normal;
 }

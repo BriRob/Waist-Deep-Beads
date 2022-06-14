@@ -40,11 +40,15 @@ function OneWb() {
         <div className="oneWbBig">
           {/* <div>Hello</div> */}
           {/* <div className=""> */}
-          <img src={waistbead.bead_img_url} alt="waistbeads" className="wbPic"></img>
+          <img
+            src={waistbead.bead_img_url}
+            alt="waistbeads"
+            className="wbPic"
+          ></img>
           {/* </div> */}
           <div className="wb-details">
             <h1>{waistbead.name}</h1>
-            <div>Beader: {waistbead.user.username}</div>
+            <div className="beader">Beader: {waistbead.user.username}</div>
 
             {!showEdit && (
               <div className="priceToEnd">
@@ -61,13 +65,17 @@ function OneWb() {
                       {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
                     </div>
                   </div>
-                  <div>
-                    categories:
-                    {categories.map((name, idx) => (
-                      <span key={idx}>{name.category_name}</span>
-                    ))}
+                  <div className="categories">
+                    <div className="categoriesT">categories:</div>
+                    <div className="allCategories">
+                      {categories.map((name, idx) => (
+                        <div className="eachCategory" key={idx}>
+                          {name.category_name}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div>{waistbead.description}</div>
+                  <div className="wbDesc">{waistbead.description}</div>
                 </div>
                 <div>
                   <div className="wbPostDate">{waistbead.created_at}</div>

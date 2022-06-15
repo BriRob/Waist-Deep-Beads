@@ -36,9 +36,11 @@ nav {
 
 .right-nav{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
+    /* align-items: center; */
     width: 300px;
     height: 53px;
+    gap: 20px;
 }
 
 
@@ -46,6 +48,8 @@ nav {
     font-size: 30px;
     height: fit-content;
     padding: 5px;
+    margin-top: 5px;
+
 }
 
 .profbtn {
@@ -57,7 +61,7 @@ nav {
 }
 
 .profbtn-usname {
-    text-align: end;
+    text-align: center;
     color:#ebebeb;
     cursor: pointer;
 
@@ -70,6 +74,9 @@ nav {
     background-color: #5583c6;
     padding: 10px;
     border-radius: 5px;
+}
+.navLinks {
+    margin-top: 12px;
 }
 
 .navLinks a {

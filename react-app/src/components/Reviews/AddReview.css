@@ -1,4 +1,8 @@
-.bigNewRev h2 {
+.bigNewRev {
+  width: 400px;
+}
+
+.bigNewRev h2, .bigEditRev h3 {
   /* width: 90%; */
   margin: 10px 19px;
   text-align: center;
@@ -6,8 +10,35 @@
   padding-bottom: 10px;
 }
 
-.bigNewRev form {
+.bigNewRev form, .bigEditRev form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+}
+
+.rating {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.addRevTextALabel {
+  margin: 10px 0;
+  width: 80%;
+}
+
+.addRevTextA {
+  border-radius: 3px;
+  border: none;
+  font-family: 'Berkshire Swash', cursive;
+  width: 100%;
+  height: 100px;
+  resize: none;
+  margin-top: 10px;
+}
+
+.lessThan {
+  font-size: 14px;
+  text-align: center;
 }

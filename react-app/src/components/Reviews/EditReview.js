@@ -7,6 +7,7 @@ import {
   getAllReviewsThunk,
 } from "../../store/reviews";
 import StarRating from "./StarRating";
+import './EditReview.css'
 
 function EditReview({ reviewId, hideEdit }) {
   const { beadId } = useParams();
@@ -43,8 +44,8 @@ function EditReview({ reviewId, hideEdit }) {
   };
 
   return (
-    <>
-      <div>EDIT YOUR REVIEW</div>
+    <div className="bigEditRev">
+      <h3>Edit Your Review</h3>
       <form onSubmit={handleSubmit}>
         {errors.map((error, idx) => (
           <div id="errors" key={idx}>
@@ -53,7 +54,9 @@ function EditReview({ reviewId, hideEdit }) {
         ))}
         <div>
           <label>
+          <div className="rating editRate">
             Rating<span>*</span>
+              </div>
             <StarRating rating={rating} setRating={setRating}/>
             {/* <input
               type="number"
@@ -65,22 +68,26 @@ function EditReview({ reviewId, hideEdit }) {
             ></input> */}
           </label>
         </div>
-        <div>
-          <label>
+
+          <label className="addRevTextALabel editRevTxL">
             <textarea
+            className="addRevTextA editTxA"
               placeholder="Add your comments"
               name="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-            <div>(optional, less than 300 characters)</div>
+            <div className="lessThan">(less than 300 characters)</div>
           </label>
+        <div className="postCancelbtns">
+
+        {/* <button className="postbtn-editRev" disabled={content.length > 300}>Submit</button> */}
+        <button className="postbtn-editRev">Submit</button>
+        <button className="cancelbtn" onClick={handleCancel}>Cancel</button>
         </div>
-        <button disabled={content.length > 300}>Submit</button>
-        <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>
       </form>
-    </>
+    </div>
   );
 }
 

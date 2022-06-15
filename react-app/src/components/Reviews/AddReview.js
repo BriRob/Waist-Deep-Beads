@@ -64,7 +64,9 @@ function AddReview({hideRev, setShowModal}) {
         ))}
         <div>
           <label>
+            <div className="rating">
             Rating<span>*</span>
+              </div>
             <StarRating rating={rating} setRating={setRating}/>
             {/* <input
               type="number"
@@ -76,19 +78,24 @@ function AddReview({hideRev, setShowModal}) {
             ></input> */}
           </label>
         </div>
-        <div>
-          <label>
+        {/* <div> */}
+          <label className="addRevTextALabel">
             <textarea
-              placeholder="Add comments"
+            className="addRevTextA"
+              placeholder="Add optional comments"
               name="content"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             ></textarea>
-            <div>(optional, less than 300 characters)</div>
+            <div className="lessThan">(less than 300 characters)</div>
           </label>
+        {/* </div> */}
+        <div className="postCancelbtns">
+
+        {/* <button className="postbtn" disabled={content.length > 300}>Submit</button> */}
+        <button className="postbtn">Submit</button>
+        <button className="cancelbtn" onClick={handleCancel}>Cancel</button>
         </div>
-        <button disabled={content.length > 300}>Submit</button>
-        <button onClick={handleCancel}>Cancel</button>
         <div>*Required</div>
       </form>
     </div>

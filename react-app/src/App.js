@@ -4,15 +4,15 @@ import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
+// import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
-import User from "./components/User";
+import User from "./components/UserProfile/User";
 import { authenticate } from "./store/session";
 import Splash from "./components/Splash/Splash";
 import OneWb from "./components/Waistbeads/OneWb";
 import NewWb from "./components/Waistbeads/NewWb";
 import Category from "./components/Categories/Category";
-import { getAllCategories } from "./store/categories";
+// import { getAllCategories } from "./store/categories";
 
 function App() {
   const [loaded, setLoaded] = useState(false);

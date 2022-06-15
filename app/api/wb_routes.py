@@ -28,6 +28,15 @@ def one_wb(bead_id):
     return waistbead.to_dict()
 
 
+# get all waistbeads for one user
+@wb_routes.route('users/<int:user_id>')
+# @login_required
+def all_wb_one_user(user_id):
+    user = User.query.get(user_id)
+    print('\n\n', user.waistbeads, '\n\n')
+    user_wbs = {waistbead.id: waistbead.to_dict() for waistbead in user.waistbeads}
+    return {'user': user.to_dict(), 'user_wbs': user_wbs}
+
 
 # create waistbead post
 # @wb_routes.route('/<int:user_id>/new', methods=['POST'])
@@ -171,5 +180,3 @@ def delete_wb(bead_id):
     db.session.delete(del_wb)
     db.session.commit()
     return del_wb.to_dict()
-
-

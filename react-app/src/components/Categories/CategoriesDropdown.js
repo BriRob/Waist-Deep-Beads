@@ -49,7 +49,7 @@ function CategoriesDropdown() {
       {categoriesArr && (
         <>
           <div className="catDropdown" onClick={openMenu}>Categories</div>
-          <div className="catDropdown">
+          <div className="catDropdownMenu">
             {showCat &&
               categoriesArr.map((cat, idx) => (
                 <div key={idx} onClick={(e) => dispatchingAgain(e, cat.id)}>

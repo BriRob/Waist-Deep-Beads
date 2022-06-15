@@ -1,7 +1,7 @@
 .splash {
     /* margin: 0 10%; */
     /* background-color: #ded8f6; */
-    width: 73;
+  margin-bottom: 30px;
 }
 
 .titleAndP {
@@ -12,6 +12,7 @@
     background-color: #ded8f6;
     border-radius: 7px;
     min-width: 730px;
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 50%), -3px -3px 10px rgb(0 0 0 / 50%);
 
 }
 
@@ -23,9 +24,10 @@
     margin: 0 5%;
     background-color: #ffccff;
     border-radius: 7px;
-    padding: 10px;
+    padding: 20px;
     min-width: fit-content;
     max-width: 850px;
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 50%), -3px -3px 10px rgb(0 0 0 / 50%);
 
 }
 

@@ -1,0 +1,41 @@
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    border-top: 1px solid black;
+    /* flex-wrap: wrap; */
+}
+
+.builtWith {
+    width: 65%;
+    max-width: 800px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    padding-top: 25px;
+    padding-bottom: 3px;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.myName {
+    font-size: 14px;
+}
+
+footer hr {
+    width: 80%;
+    max-width: 900px;
+}
+
+.footerIcons {
+    width: 30px;
+}
+
+.me {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}

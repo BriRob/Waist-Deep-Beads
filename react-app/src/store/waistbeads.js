@@ -1,6 +1,7 @@
 const GET_ALL_WB = "waistbeads/GET_ALL_WB";
 const GET_ONE_WB = "waistbeads/GET_ONE_WB";
 const DELETE_WB = "waistbeads/DELETE_WB";
+const ONE_USER_WBS = "waistbeads/ONE_USER_WBS";
 
 const getAllWb = (waistbeads) => ({
   type: GET_ALL_WB,
@@ -16,6 +17,12 @@ const deleteWb = (waistbead) => ({
   type: DELETE_WB,
   waistbead,
 });
+
+const oneUserWbs = (waistbeads) => ({
+  type: ONE_USER_WBS,
+  waistbeads,
+})
+
 
 export const getAllWaistbeadsThunk = () => async (dispatch) => {
   const response = await fetch("/api/waistbeads/");
@@ -121,6 +128,18 @@ export const deleteWaistbeadThunk = (beadId) => async (dispatch) => {
   return response;
 };
 
+
+export const oneUserWaistbeadsThunk = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/waistbeads/users/${userId}`);
+  if (response.ok) {
+    const waistbeads = await response.json();
+    dispatch(oneUserWbs(waistbeads));
+    return waistbeads
+  }
+  return response;
+};
+
+
 export default function waistbeadsReducer(state = {}, action) {
   let newState;
   switch (action.type) {
@@ -135,6 +154,10 @@ export default function waistbeadsReducer(state = {}, action) {
     case DELETE_WB:
       newState = { ...state };
       delete newState.waistbead;
+      return newState;
+    case ONE_USER_WBS:
+      newState = { ...state };
+      newState.userWbs = action.waistbeads;
       return newState;
     default:
       return state;

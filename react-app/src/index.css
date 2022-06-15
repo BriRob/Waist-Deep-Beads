@@ -1,47 +1,63 @@
 body {
-    margin: 0px;
+  margin: 0px;
 }
+
 .underNav {
-    padding-top: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 html {
-    /* background-color: #813aae; */
-    /* background-color: #5583c6; */
-    background-color: #673398;
-    /* font-family: 'Nunito'; */
-    /* font-family: 'Cinzel Decorative', cursive; */
-    font-family: 'Berkshire Swash', cursive;
-    /* font-family: 'Playball', cursive; */
+  /* background-color: #813aae; */
+  /* background-color: #5583c6; */
+  background-color: #673398;
+  /* font-family: 'Nunito'; */
+  /* font-family: 'Cinzel Decorative', cursive; */
+  font-family: "Berkshire Swash", cursive;
+  /* font-family: 'Playball', cursive; */
 }
 
 button {
-    font-family: "Berkshire Swash", cursive;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    padding: 5px 10px;
+  font-family: "Berkshire Swash", cursive;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  transition: 0.3s;
 }
 
 .editBtn {
-        /* background-color: #5583c6; */
-    background-color: #673398;
-    font-size: 17px;
-    color: rgb(208, 205, 205);
+  /* background-color: #5583c6; */
+  background-color: #673398;
+  font-size: 17px;
+  color: rgb(208, 205, 205);
 }
 
 .delBtn {
-    background-color: #a8babd;
-    font-size: 17px;
+  background-color: #a8babd;
+  font-size: 17px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+  transition: 0.3s;
 }
 
 #errors {
-    color: rgb(122, 14, 41);
+  color: rgb(122, 14, 41);
+}
+
+.profbtn-usname, .catDropdown, .catDropdownMenu div, .logo-btn {
+    transition: 0.3s;
+}
+
+a:hover, button:hover, .profbtn-usname:hover, .catDropdown:hover, .catDropdownMenu div:hover, .logo-btn:hover {
+  transform: scale(1.1);
+
+}
+
+a:active, button:active, .profbtn-usname:active, .catDropdown:active, .catDropdownMenu div:active, .logo-btn:active {
+    transform: scale(0.9);
 }

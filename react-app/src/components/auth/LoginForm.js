@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { login } from "../../store/session";
+import Footer from "../Footer";
 import "./LoginForm.css";
 
 const LoginForm = () => {
@@ -42,48 +43,59 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="loginformdiv">
-      <form onSubmit={onLogin}>
-        <h1 className="loginTitle">Log In</h1>
-        {errors && (<div className="signUp-login-errors">
-          {errors.map((error, ind) => (
-            <div key={ind} id="errors">{error}</div>
-          ))}
-        </div>)}
-        <div className="login-grid">
-          {/* <div> */}
-          <label htmlFor="email">Email*</label>
-          <input
-            name="email"
-            type="text"
-            // placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-          />
-          {/* </div> */}
-          {/* <div> */}
-          <label htmlFor="password">Password*</label>
-          <input
-            name="password"
-            type="password"
-            // placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-          />
-          {/* </div> */}
-        </div>
-        <div className="loginBtns">
-          <button className='login-signup-btns' type="submit">Login</button>
-          <button className='demoBtn' onClick={loginDemo}>Login as Demo User</button>
-        </div>
-        <div className="bottomDivLogSign">
-          <Link className="alreadyBecome" to="/sign-up">
-            Become a Waist Deep Member
-          </Link>
-          <div className="req">*Required</div>
-        </div>
-      </form>
-    </div>
+    <>
+      <div className="loginformdiv">
+        <form onSubmit={onLogin}>
+          <h1 className="loginTitle">Log In</h1>
+          {errors && (
+            <div className="signUp-login-errors">
+              {errors.map((error, ind) => (
+                <div key={ind} id="errors">
+                  {error}
+                </div>
+              ))}
+            </div>
+          )}
+          <div className="login-grid">
+            {/* <div> */}
+            <label htmlFor="email">Email*</label>
+            <input
+              name="email"
+              type="text"
+              // placeholder="Email"
+              value={email}
+              onChange={updateEmail}
+            />
+            {/* </div> */}
+            {/* <div> */}
+            <label htmlFor="password">Password*</label>
+            <input
+              name="password"
+              type="password"
+              // placeholder="Password"
+              value={password}
+              onChange={updatePassword}
+            />
+            {/* </div> */}
+          </div>
+          <div className="loginBtns">
+            <button className="login-signup-btns" type="submit">
+              Login
+            </button>
+            <button className="demoBtn" onClick={loginDemo}>
+              Login as Demo User
+            </button>
+          </div>
+          <div className="bottomDivLogSign">
+            <Link className="alreadyBecome" to="/sign-up">
+              Become a Waist Deep Member
+            </Link>
+            <div className="req">*Required</div>
+          </div>
+        </form>
+      </div>
+      <Footer />
+    </>
   );
 };
 

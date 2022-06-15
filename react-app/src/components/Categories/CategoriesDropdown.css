@@ -5,9 +5,26 @@
 }
 
 .catDropdown {
-    background-color: #5583c6;
+    /* background-color: #5583c6; */
+    background-color: #0d0202;
     padding: 5px;
-    border-radius: 5px;
     cursor: pointer;
     color: #ebebeb;
+}
+
+.catDropdownMenu {
+    color: #ebebeb;
+    /* background-color: #5583c6; */
+    background-color: #0d0202;
+    padding: 5px;
+    border-radius: 5px;
+    /* margin: 0 10px; */
+}
+
+.catDropdownMenu div {
+    /* color: #4f0a12; */
+    color: #5583c6;;
+    cursor: pointer;
+    padding:  0 10px;
+
 }

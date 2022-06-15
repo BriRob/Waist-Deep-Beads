@@ -25,9 +25,14 @@ function OneWb() {
   const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
+    // const controller = new AbortController();
     dispatch(getOneWaistbeadThunk(beadId));
     dispatch(getAllReviewsThunk(beadId));
+    // if (!reviews) return () => controller.abort();
+    // if (!waistbead) return () => controller.abort();
   }, [dispatch]);
+
+  console.log('reviews', reviews)
 
   let categories;
   if (waistbead) {
@@ -63,7 +68,7 @@ function OneWb() {
                     </div>
                     <div>
                       In Stock?
-                      {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+                      {waistbead.in_stock ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-x"></i>}
                     </div>
                   </div>
                   <div className="categories">

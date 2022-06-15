@@ -5,9 +5,9 @@ function DeleteRevQ({ review, beadId, setShowModal }) {
   const dispatch = useDispatch();
 
   const yesDel = async () => {
+    setShowModal(false)
     await dispatch(deleteReviewThunk(review.id));
     await dispatch(getAllReviewsThunk(beadId));
-    setShowModal(false)
   }
 
   return (

@@ -9,6 +9,7 @@ import {
   getOneWaistbeadThunk,
 } from "../../store/waistbeads";
 import Reviews from "../Reviews/Reviews";
+import DeleteWbQModal from "./DeleteWbQModal";
 import EditWb from "./EditWb";
 import "./OneWb.css";
 
@@ -92,7 +93,8 @@ function OneWb() {
                       >
                         Edit
                       </button>
-                      <button
+                      <DeleteWbQModal beadId={beadId}/>
+                      {/* <button
                         className="delBtn"
                         onClick={async () => {
                           await dispatch(deleteWaistbeadThunk(beadId));
@@ -101,7 +103,7 @@ function OneWb() {
                         }}
                       >
                         Delete
-                      </button>
+                      </button> */}
                     </div>
                   )}
                 </div>

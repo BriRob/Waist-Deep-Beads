@@ -23,7 +23,7 @@ def all_waistbeads():
 @wb_routes.route('/<int:bead_id>')
 # @login_required
 def one_wb(bead_id):
-    print('in one wb! \n\n')
+    # print('in one wb! \n\n')
     waistbead = Waistbead.query.get(bead_id)
     return waistbead.to_dict()
 
@@ -33,7 +33,7 @@ def one_wb(bead_id):
 # @login_required
 def all_wb_one_user(user_id):
     user = User.query.get(user_id)
-    print('\n\n', user.waistbeads, '\n\n')
+    # print('\n\n', user.waistbeads, '\n\n')
     user_wbs = {waistbead.id: waistbead.to_dict() for waistbead in user.waistbeads}
     return {'user': user.to_dict(), 'user_wbs': user_wbs}
 
@@ -43,14 +43,14 @@ def all_wb_one_user(user_id):
 @wb_routes.route('/<int:user_id>/new', methods=['POST'])
 @login_required
 def post_wb(user_id):
-    print("\n\n request args length", len(request.args.get('cates')))
+    # print("\n\n request args length", len(request.args.get('cates')))
 
     # print('\n\n other request args', request.args['cates'])
     # print(request.args['cates'])
     # print(request.args['cates'] == False)
     form = CreateWbForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("\n\n", dir(request.data))
+    # print("\n\n", dir(request.data))
 
     if form.validate_on_submit():
 

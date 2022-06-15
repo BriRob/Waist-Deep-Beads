@@ -3,23 +3,30 @@ from wtforms import StringField, TextAreaField, FloatField, BooleanField, Select
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Category
 
-# def getCategories():
-#     categoriesDb = Category.query.all()
-#     print(categoriesDb)
-#     categoriesLis = [cat.to_dict() for cat in categoriesDb]
-#     print(categoriesLis)
-#     return categoriesLis
-# print('categoriesLis \n\n', categoriesLis)
-# getCategories()
+def length_check(form, field):
+    # print(dir(field.label))
+    # print(field.label.text)
+    name = field.data
+    if (field.label.text == "Name"):
+        if len(name) > 100:
+            raise ValidationError(f'{field.label.text} must be less than 100 characters')
 
-# class MultiCheckboxField(SelectMultipleField):
-#     widget = widgets.ListWidget(prefix_label=False)
-#     option_widget = widgets.CheckboxInput()
+def price_check(form, field):
+    # print(dir(field.label))
+    # print(field.label.text)
+    price = field.data
+    # print('\n\n price!!', price < 1, '\n\n')
+    if (field.label.text == "Price"):
+        if price < 1 :
+            raise ValidationError('The lowest possible price is $1.00')
+
+
+
 
 class CreateWbForm(FlaskForm):
     bead_img_url = StringField('bead_img_url', validators=[DataRequired(message='Cannot share your creation without image')])
-    name = StringField('name', validators=[DataRequired('Name is required')]) #add custom validator to make sure name is unique
-    price = FloatField('price', validators=[DataRequired('Price is required')])
+    name = StringField('Name', validators=[DataRequired('Name is required'), length_check]) #add custom validator to make sure name is unique
+    price = FloatField('Price', validators=[DataRequired('Price is required'), price_check])
     description = TextAreaField('description')
     in_stock = BooleanField('in_stock')
     # categories = MultiCheckboxField('categories', choices=categoriesLis)

@@ -30,7 +30,10 @@ def length_check(form, field):
     if (field.label.text == "Username"):
         if len(name) > 40:
             raise ValidationError(f'{field.label.text} must be less than 40 characters')
-    if (field.label.text == "Password" or field.label.text == "Username"):
+    if (field.label.text == "Email"):
+        if len(name) > 140:
+            raise ValidationError(f'{field.label.text} must be less than 140 characters')
+    if (field.label.text == "Password"):
         if len(name) > 30 or len(name) < 5:
             raise ValidationError(f'{field.label.text} must be between 5 and 30 characters')
 
@@ -38,5 +41,5 @@ class SignUpForm(FlaskForm):
     full_name = StringField("Full Name", validators=[DataRequired(message="Full Name is required"), length_check])
     username = StringField(
         'Username', validators=[DataRequired('Username is required'), username_exists, length_check])
-    email = StringField('email', validators=[DataRequired('Email is required'), Email(message="Invalid email address"), user_exists])
-    password = StringField('password', validators=[DataRequired('Password is required'), length_check])
+    email = StringField('Email', validators=[DataRequired('Email is required'), Email(message="Invalid email address"), length_check, user_exists])
+    password = StringField('Password', validators=[DataRequired('Password is required'), length_check])

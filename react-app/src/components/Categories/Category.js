@@ -17,7 +17,7 @@ function Category() {
 
   let wbArr;
   if (category_wbs) {
-    wbArr = Object.values(category_wbs);
+    wbArr = Object.values(category_wbs).reverse();
   }
 
 //   const [isLoaded, setIsLoaded] = useState(false)

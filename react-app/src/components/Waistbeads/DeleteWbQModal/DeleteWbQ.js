@@ -8,9 +8,9 @@ function DeleteWbQ({ review, beadId, setShowModal }) {
   const history = useHistory();
 
   const yesDel = async () => {
+    setShowModal(false)
     await dispatch(deleteWaistbeadThunk(beadId));
     await dispatch(getAllWaistbeadsThunk());
-    setShowModal(false)
     return history.push("/");
   }
 

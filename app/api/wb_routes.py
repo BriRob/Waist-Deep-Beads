@@ -179,4 +179,4 @@ def delete_wb(bead_id):
     del_wb = Waistbead.query.get(bead_id)
     db.session.delete(del_wb)
     db.session.commit()
-    return del_wb.to_dict()
+    return f'{bead_id}'

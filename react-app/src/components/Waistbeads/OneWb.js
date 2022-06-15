@@ -25,9 +25,14 @@ function OneWb() {
   const [showEdit, setShowEdit] = useState(false);
 
   useEffect(() => {
+    // const controller = new AbortController();
     dispatch(getOneWaistbeadThunk(beadId));
     dispatch(getAllReviewsThunk(beadId));
+    // if (!reviews) return () => controller.abort();
+    // if (!waistbead) return () => controller.abort();
   }, [dispatch]);
+
+  console.log('reviews', reviews)
 
   let categories;
   if (waistbead) {

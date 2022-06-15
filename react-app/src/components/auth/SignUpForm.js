@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { login, signUp } from "../../store/session";
+import Footer from "../Footer";
 import "./SignUpForm.css";
 
 const SignUpForm = () => {
@@ -61,6 +62,8 @@ const SignUpForm = () => {
   }
 
   return (
+    <>
+
     <div className="signupformdiv">
       <form onSubmit={onSignUp}>
         <h1 className="signUpTitle">Sign Up</h1>
@@ -126,6 +129,8 @@ const SignUpForm = () => {
         </div>
       </form>
     </div>
+    <Footer />
+    </>
   );
 };
 

@@ -13,6 +13,7 @@
   border-radius: 7px;
   margin-top: 5%;
   object-fit: cover;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 50%), -3px -3px 10px rgb(0 0 0 / 50%);
 }
 
 .wb-details {
@@ -26,6 +27,7 @@
   border-radius: 7px;
   padding: 0 10px;
   overflow-y: scroll;
+  box-shadow: 3px 3px 10px rgb(0 0 0 / 50%), -3px -3px 10px rgb(0 0 0 / 50%);
 }
 
 .wb-details h1 {
@@ -92,7 +94,8 @@ justify-content: space-around;
   /* border: solid green 1px; */
   border-radius: 3px;
   width: fit-content;
-  background-color: #690e37;
+  /* background-color: #690e37; */
+  background-color: #5583c6;
   color:rgb(208, 205, 205);
   padding: 3px;
   margin: 3px 0;
@@ -111,4 +114,12 @@ justify-content: space-around;
   /* word-break: break-all; */
   /* overflow-wrap: break-word; */
   white-space: normal;
+}
+
+.fa-check {
+  color: rgb(3, 154, 3);
+}
+
+.fa-x {
+  color: red;
 }

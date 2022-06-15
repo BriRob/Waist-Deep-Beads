@@ -10,7 +10,8 @@ nav {
     left: 0;
     width: 100%;
     height: 56px;
-    background-color: #5583c6;
+    /* background-color: #5583c6; */
+    background-color: #0d0202;
     padding: 10px 0px;
     font-size: 23px;
     z-index: 10;
@@ -49,6 +50,7 @@ nav {
     height: fit-content;
     padding: 5px;
     margin-top: 5px;
+    background-color: #ffcf00;
 
 }
 
@@ -71,7 +73,8 @@ nav {
     display: flex;
     flex-direction: column;
     text-align: end;
-    background-color: #5583c6;
+    /* background-color: #5583c6; */
+    background-color: #0d0202;
     padding: 10px;
     border-radius: 5px;
 }
@@ -88,6 +91,7 @@ nav {
     margin-bottom: 10px;
     font-size: 17px;
     text-align: center;
+    color: #5583c6;
 }
 
 .logoutBtn {

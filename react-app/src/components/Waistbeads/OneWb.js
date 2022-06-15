@@ -68,7 +68,7 @@ function OneWb() {
                     </div>
                     <div>
                       In Stock?
-                      {waistbead.in_stock ? <span>yes</span> : <span>no</span>}
+                      {waistbead.in_stock ? <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-x"></i>}
                     </div>
                   </div>
                   <div className="categories">

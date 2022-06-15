@@ -67,7 +67,7 @@ const SignUpForm = () => {
 
         {errors && (<div className="signUp-login-errors">
           {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
+            <div key={ind} id='errors'>{error}</div>
           ))}
         </div>)}
         <div className="signup-grid">

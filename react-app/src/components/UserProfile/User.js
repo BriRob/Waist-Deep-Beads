@@ -18,7 +18,7 @@ function User() {
   if (userAndWbs) {
     user = userAndWbs.user;
     waistbeads = userAndWbs.user_wbs;
-    waistbeadsArr = Object.values(waistbeads)
+    waistbeadsArr = Object.values(waistbeads);
   }
 
   console.log("user from selector", user);
@@ -49,7 +49,7 @@ function User() {
 
   return (
     <>
-      <ul>
+      {/* <ul>
         <li>
           <strong>User Id</strong> {userId}
         </li>
@@ -59,15 +59,28 @@ function User() {
         <li>
           <strong>Email</strong> {user.email}
         </li>
-      </ul>
-
+      </ul> */}
+      <h1>{user.username} Profile</h1>
+      <div>{user.full_name}</div>
+      <div>{user.email}</div>
+      <h2>Your {waistbeadsArr.length} Creation(s)</h2>
       <div className="splashPosts">
         {waistbeadsArr?.map((bead, idx) => (
           <Link to={`/waistbeads/${bead.id}`} key={idx} className="eachPost">
+            <div className="">Posted on: {bead.created_at}</div>
             <img src={bead.bead_img_url} alt="waistbeads"></img>
             <h3>{bead.name}</h3>
-            <div>{bead.price.toLocaleString('en-US', {style:'currency', currency:'USD'})}</div>
+            <div>
+              {bead.price.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </div>
 
+            <div>
+              In Stock?
+              {bead.in_stock ? <span>yes</span> : <span>no</span>}
+            </div>
           </Link>
         ))}
       </div>

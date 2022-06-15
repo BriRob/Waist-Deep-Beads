@@ -83,3 +83,13 @@ nav {
     color:#ebebeb;
 
 }
+
+.profileLink {
+    margin-bottom: 10px;
+    font-size: 17px;
+    text-align: center;
+}
+
+.logoutBtn {
+    font-size: 17px;
+}

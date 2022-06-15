@@ -19,7 +19,7 @@ function User() {
   if (userAndWbs) {
     user = userAndWbs.user;
     waistbeads = userAndWbs.user_wbs;
-    waistbeadsArr = Object.values(waistbeads);
+    waistbeadsArr = Object.values(waistbeads).reverse();
   }
 
   console.log("user from selector", user);

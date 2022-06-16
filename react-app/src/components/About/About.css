@@ -5,6 +5,7 @@
     width: 70%;
     max-width: 700px;
     min-width: 450px;
+    margin-top: 10px;
 }
 
 .about h2 {
@@ -30,4 +31,12 @@
     background-color: #00000075;
     border-radius: 7px;
     margin-top: 45px;
+}
+
+.contentInfo li {
+    padding: 7px 0;
+}
+
+#briefHis {
+    margin-top: 15px;
 }

@@ -49,17 +49,15 @@ a {
   color: rgb(122, 14, 41);
 }
 
-.profbtn-usname, .catDropdown, .catDropdownMenu div, .logo-btn {
+.profbtn-usname, .catDropdown, .catDropdownMenu div, .logo-btn, .aboutWbTitle {
     transition: 0.3s;
 }
 
-a:hover, button:hover, .profbtn-usname:hover, .catDropdown:hover, .catDropdownMenu div:hover, .logo-btn:hover {
+a:hover, button:hover, .profbtn-usname:hover, .catDropdown:hover, .catDropdownMenu div:hover, .logo-btn:hover, .aboutWbTitle:hover {
   transform: scale(1.1);
 
 }
 
-a:active, button:active, .profbtn-usname:active, .catDropdown:active, .catDropdownMenu div:active, .logo-btn:active {
+a:active, button:active, .profbtn-usname:active, .catDropdown:active, .catDropdownMenu div:active, .logo-btn:active, .aboutWbTitle:active {
     transform: scale(0.9);
 }
-
-

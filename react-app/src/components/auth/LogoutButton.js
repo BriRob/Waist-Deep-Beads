@@ -5,16 +5,16 @@ import { logout } from '../../store/session';
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
-  // const history = useHistory()
+  const history = useHistory()
   // const {pathname} = useLocation()
 
   const onLogout = async (e) => {
     await dispatch(logout());
 
     // if (pathname === '/') {
-      return window.location.reload()
+      // return window.location.reload()
     // } else {
-    //   return history.push('/')
+      return history.push('/login')
     // }
   };
 

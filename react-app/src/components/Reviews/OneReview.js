@@ -24,7 +24,7 @@ function OneReview({ review, beadId }) {
             {/* {review.rating} */}
             <ReadStarRating rating={review.rating} />
           </div>
-          <div>{review.content}</div>
+          <div className="revContent">{review.content}</div>
         </>
       )}
       {!showEdit && sessionUser && sessionUser.id === review.author.id && (

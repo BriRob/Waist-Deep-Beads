@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { getAllReviewsThunk } from "../../store/reviews";
 import { newWaistbeadThunk } from "../../store/waistbeads";
+import Loading from "../Loading/Loading";
 import "./NewWb.css";
 
 function NewWb({ setShowModal }) {
@@ -33,6 +34,8 @@ function NewWb({ setShowModal }) {
 
   const [errors, setErrors] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false)
+
   // if (!user) {
   //   return <Redirect to='/login' />
   // }
@@ -62,6 +65,7 @@ function NewWb({ setShowModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(selCates);
+    setIsLoading(true)
 
     for (let key in selCates) {
       if (!selCates[key]) {
@@ -87,11 +91,17 @@ function NewWb({ setShowModal }) {
     // console.log(post);
     if (post.errors) {
       // console.log("there are errors");
-      setErrors(post.errors);
+      // setErrors(post.errors);
+      await setErrors(post.errors);
+      await setIsLoading(false)
     } else {
-      history.push(`/waistbeads/${post.id}`);
+      // history.push(`/waistbeads/${post.id}`);
+      // await dispatch(getAllReviewsThunk(post.id));
+      // setShowModal(false);
       await dispatch(getAllReviewsThunk(post.id));
-      setShowModal(false);
+      await setIsLoading(false)
+      await setShowModal(false);
+      history.push(`/waistbeads/${post.id}`);
     }
   };
 
@@ -108,101 +118,112 @@ function NewWb({ setShowModal }) {
   // console.log('selCates ====> ', selCates)
   // console.log(errors)
 
-  return (
-    <div className="bigNewWb">
-      <h2>Your New Creation</h2>
-      <form onSubmit={handleSubmit}>
-        <label className="uploadPhotoBtn">
-          Upload One Photo<span>*</span>
-          <input
-            type="file"
-            name="bead_img_url"
-            onChange={updateImage}
-            // value={beadImgUrl}
-            accept=".jpg, .jpeg, .png, .gif"
-          ></input>
-        </label>
-        {showPreview && (
-          <img src={previewURL} className="imgPrvw" alt="preview"></img>
-        )}
-        {errors.map((error, idx) => (
-          <div id="errors" key={idx}>
-            {error}
+
+  if (isLoading) {
+    return (
+      <Loading />
+    )
+  } else {
+
+    return (
+      <div className="bigNewWb">
+        <h2>Your New Creation</h2>
+        {/* {isLoading} */}
+        <form onSubmit={handleSubmit}>
+          <label className="uploadPhotoBtn">
+            Upload One Photo<span>*</span>
+            <input
+              type="file"
+              name="bead_img_url"
+              onChange={updateImage}
+              // value={beadImgUrl}
+              accept=".jpg, .jpeg, .png, .gif"
+            ></input>
+          </label>
+          {showPreview && (
+            <img src={previewURL} className="imgPrvw" alt="preview"></img>
+          )}
+          {errors.map((error, idx) => (
+            <div id="errors" key={idx}>
+              {error}
+            </div>
+          ))}
+          <div className="namePrice">
+            <label>
+              Name of Creation<span>*</span>
+            </label>
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              // placeholder="Name.."
+            ></input>
+            <label>
+              Price<span>*</span>
+            </label>
+            <input
+              type="number"
+              name="price"
+              onChange={(e) => setPrice(e.target.value)}
+              min={1}
+              max={10000}
+              value={price}
+            ></input>
           </div>
-        ))}
-        <div className="namePrice">
-          <label>
-            Name of Creation<span>*</span>
+          <label className="newWbTxtALabel">
+            <textarea
+              className="newWbTxtA"
+              name="description"
+              onChange={(e) => setDesc(e.target.value)}
+              value={desc}
+              placeholder="Optional description here..."
+            ></textarea>
+            <div className="less5000">(less than 5000 characters)</div>
           </label>
-          <input
-            type="text"
-            name="name"
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            // placeholder="Name.."
-          ></input>
-          <label>
-            Price<span>*</span>
-          </label>
-          <input
-            type="number"
-            name="price"
-            onChange={(e) => setPrice(e.target.value)}
-            min={1}
-            max={10000}
-            value={price}
-          ></input>
-        </div>
-        <label className="newWbTxtALabel">
-          <textarea
-            className="newWbTxtA"
-            name="description"
-            onChange={(e) => setDesc(e.target.value)}
-            value={desc}
-            placeholder="Optional description here..."
-          ></textarea>
-        </label>
-        <div className="bigCateg">
-          <div className="innerCateg">
-            <div className="catTitle">Choose Categories</div>
-            <div className="categs">
-              {categoriesArr?.map((cat, idx) => (
-                <div key={idx}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      name={cat.category_name}
-                      checked={
-                        selCates[cat.category_name] !== undefined &&
-                        selCates[cat.category_name] !== false
-                      }
-                      onChange={handleSelChange}
-                    ></input>
-                    {cat.category_name}
-                  </label>
-                </div>
-              ))}
+          <div className="bigCateg">
+            <div className="innerCateg">
+              <div className="catTitle">Choose Categories</div>
+              <div className="categs">
+                {categoriesArr?.map((cat, idx) => (
+                  <div key={idx}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name={cat.category_name}
+                        checked={
+                          selCates[cat.category_name] !== undefined &&
+                          selCates[cat.category_name] !== false
+                        }
+                        onChange={handleSelChange}
+                      ></input>
+                      {cat.category_name}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-        <label className="inStock">
-          In Stock?
-          <input
-            type="checkbox"
-            onChange={(e) => setInStock(!inStock)}
-            checked={inStock}
-          ></input>
-        </label>
-        <div className="postCancelbtns">
-          <button className="postbtn">Post</button>
-          <button className="cancelbtn" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
-        <div>*Required</div>
-      </form>
-    </div>
-  );
+          <label className="inStock">
+            In Stock?
+            <input
+              type="checkbox"
+              onChange={(e) => setInStock(!inStock)}
+              checked={inStock}
+            ></input>
+          </label>
+          <div className="postCancelbtns">
+            <button className="postbtn">Post</button>
+            <button className="cancelbtn" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+          <div>*Required</div>
+        </form>
+      </div>
+    );
+  }
+
 }
 
 export default NewWb;

@@ -10,6 +10,9 @@ def length_check(form, field):
     if (field.label.text == "Name"):
         if len(name) > 100:
             raise ValidationError(f'{field.label.text} must be less than 100 characters')
+    if (field.label.text == "Description"):
+        if len(name) > 5000:
+            raise ValidationError(f'{field.label.text} must be less than 5000 characters')
 
 def price_check(form, field):
     # print(dir(field.label))
@@ -27,7 +30,7 @@ class CreateWbForm(FlaskForm):
     bead_img_url = StringField('bead_img_url', validators=[DataRequired(message='Cannot share your creation without image')])
     name = StringField('Name', validators=[DataRequired('Name is required'), length_check]) #add custom validator to make sure name is unique
     price = FloatField('Price', validators=[DataRequired('Price is required'), price_check])
-    description = TextAreaField('description')
+    description = TextAreaField('Description', validators=[length_check])
     in_stock = BooleanField('in_stock')
     # categories = MultiCheckboxField('categories', choices=categoriesLis)
 

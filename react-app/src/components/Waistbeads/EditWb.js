@@ -201,6 +201,7 @@ function EditWb({ hideEdit }) {
             value={desc}
             placeholder="Optional description here..."
           ></textarea>
+          <div className="less5000">(less than 5000 characters)</div>
         </label>
         <div className="bigCateg">
           <div className="innerCateg">

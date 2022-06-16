@@ -46,9 +46,9 @@ function CategoriesDropdown() {
 
   return (
     <div className="outerDropdown">
-      {categoriesArr && (
         <>
           <div className="catDropdown" onClick={openMenu}>Categories</div>
+      {categoriesArr && showCat && (
           <div className="catDropdownMenu">
             {showCat &&
               categoriesArr.map((cat, idx) => (
@@ -57,8 +57,8 @@ function CategoriesDropdown() {
                 </div>
               ))}
           </div>
-        </>
       )}
+      </>
     </div>
   );
 }

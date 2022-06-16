@@ -12,6 +12,7 @@ import Splash from "./components/Splash/Splash";
 import OneWb from "./components/Waistbeads/OneWb";
 import NewWb from "./components/Waistbeads/NewWb";
 import Category from "./components/Categories/Category";
+import About from "./components/About/About";
 // import { getAllCategories } from "./store/categories";
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
           <Route path="/users" exact={true}>
             <UsersList />
           </Route>
+          <Route path="/about" exact={true}>
+            <About />
+          </Route>
           <Route path="/users/:userId" exact={true}>
             <User />
           </Route>
@@ -58,6 +62,9 @@ function App() {
           </Route>
           <Route path="/categories/:catId" exact={true}>
             <Category />
+          </Route>
+          <Route>
+            <h1>Page Not Found</h1>
           </Route>
         </Switch>
       </div>

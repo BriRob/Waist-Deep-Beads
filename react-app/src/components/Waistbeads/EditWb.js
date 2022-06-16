@@ -70,13 +70,13 @@ function EditWb({ hideEdit }) {
 
   const handleSelChange = (e, categName) => {
     // console.log("event", e);
-    console.log(categName);
+    // console.log(categName);
 
     if (selCates[categName]) {
       // delete selCates[categName]
       const newSelCatesObj = { ...selCates };
       delete newSelCatesObj[categName];
-      console.log("newSelCatesObj", newSelCatesObj);
+      // console.log("newSelCatesObj", newSelCatesObj);
       setSelCates(newSelCatesObj);
       // e.target.checked = !e.target.checked
       // setSelCates({...selCates, [categName]: e.target.checked})
@@ -116,7 +116,7 @@ function EditWb({ hideEdit }) {
     // console.log("selCates ====> ", selCates);
   };
 
-  console.log("selCates ====> ", selCates);
+  // console.log("selCates ====> ", selCates);
 
   const handleCancel = (e) => {
     e.preventDefault();
@@ -125,7 +125,7 @@ function EditWb({ hideEdit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("in handle submit!!! \n\n", selCates);
+    // console.log("in handle submit!!! \n\n", selCates);
     const newCateArr = Object.keys(selCates);
 
     const bead_img_url = beadImgUrl;
@@ -149,11 +149,7 @@ function EditWb({ hideEdit }) {
     <div className="editWbBig">
       <h3>Edit Your Creation</h3>
       <form onSubmit={handleSubmit}>
-        {errors.map((error, idx) => (
-          <div id="errors" key={idx}>
-            {error}
-          </div>
-        ))}
+
         <div className="photoUploadEdit">
           <label className="uploadPhotoBtn" id="upldPhoBtn">
             Upload New Photo
@@ -169,6 +165,11 @@ function EditWb({ hideEdit }) {
             <img src={previewURL} className="imgPrvwEdit" alt="preview"></img>
           )}
         </div>
+        {errors.map((error, idx) => (
+          <div id="errors" key={idx}>
+            {error}
+          </div>
+        ))}
         <div className="namePriceEdit">
           <label>
             Name of Creation<span>*</span>
@@ -188,6 +189,8 @@ function EditWb({ hideEdit }) {
             name="price"
             onChange={(e) => setPrice(e.target.value)}
             value={price}
+            min={1}
+            max={10000}
           ></input>
         </div>
         <label className="newWbTxtALabel">

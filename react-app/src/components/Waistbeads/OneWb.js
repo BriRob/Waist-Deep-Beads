@@ -4,6 +4,7 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import { getAllCategories } from "../../store/categories";
 import { getAllReviewsThunk } from "../../store/reviews";
 import {
+  clearWbs,
   deleteWaistbeadThunk,
   getAllWaistbeadsThunk,
   getOneWaistbeadThunk,
@@ -30,14 +31,19 @@ function OneWb() {
     dispatch(getAllReviewsThunk(beadId));
     // if (!reviews) return () => controller.abort();
     // if (!waistbead) return () => controller.abort();
+    return () => dispatch(clearWbs())
   }, [dispatch]);
 
-  console.log('reviews', reviews)
+  // console.log('reviews', reviews)
 
   let categories;
   if (waistbead) {
     categories = Object.values(waistbead?.categories);
     // console.log("category", Object.values(waistbead.categories))
+  }
+
+  if (!waistbead) {
+    return <h1>Loading...</h1>
   }
 
   return (

@@ -6,6 +6,8 @@ footer {
     margin-top: 20px;
     border-top: 1px solid black;
     /* flex-wrap: wrap; */
+    background-color: rgb(88 88 88);
+    color: #ebebeb;
 }
 
 .builtWith {

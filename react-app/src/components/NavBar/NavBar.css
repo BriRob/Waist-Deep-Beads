@@ -44,7 +44,7 @@ nav {
     align-items: center;
     width: 300px;
     /* height: 53px; */
-    /* gap: 20px; */
+    gap: 20px;
 }
 
 
@@ -66,7 +66,7 @@ nav {
 }
 
 .profbtn-usname {
-    text-align: center;
+    text-align: end;
     color:#ebebeb;
     cursor: pointer;
 

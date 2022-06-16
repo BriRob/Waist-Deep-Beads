@@ -61,7 +61,7 @@ function NewWb({ setShowModal }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(selCates);
+    // console.log(selCates);
 
     for (let key in selCates) {
       if (!selCates[key]) {
@@ -112,11 +112,6 @@ function NewWb({ setShowModal }) {
     <div className="bigNewWb">
       <h2>Your New Creation</h2>
       <form onSubmit={handleSubmit}>
-        {errors.map((error, idx) => (
-          <div id="errors" key={idx}>
-            {error}
-          </div>
-        ))}
         <label className="uploadPhotoBtn">
           Upload One Photo<span>*</span>
           <input
@@ -130,6 +125,11 @@ function NewWb({ setShowModal }) {
         {showPreview && (
           <img src={previewURL} className="imgPrvw" alt="preview"></img>
         )}
+        {errors.map((error, idx) => (
+          <div id="errors" key={idx}>
+            {error}
+          </div>
+        ))}
         <div className="namePrice">
           <label>
             Name of Creation<span>*</span>
@@ -149,6 +149,7 @@ function NewWb({ setShowModal }) {
             name="price"
             onChange={(e) => setPrice(e.target.value)}
             min={1}
+            max={10000}
             value={price}
           ></input>
         </div>
@@ -194,7 +195,9 @@ function NewWb({ setShowModal }) {
         </label>
         <div className="postCancelbtns">
           <button className="postbtn">Post</button>
-          <button className="cancelbtn" onClick={handleCancel}>Cancel</button>
+          <button className="cancelbtn" onClick={handleCancel}>
+            Cancel
+          </button>
         </div>
         <div>*Required</div>
       </form>

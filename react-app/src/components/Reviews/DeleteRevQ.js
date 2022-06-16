@@ -5,17 +5,23 @@ function DeleteRevQ({ review, beadId, setShowModal }) {
   const dispatch = useDispatch();
 
   const yesDel = async () => {
-    setShowModal(false)
+    setShowModal(false);
     await dispatch(deleteReviewThunk(review.id));
     await dispatch(getAllReviewsThunk(beadId));
-  }
+  };
 
   return (
     <div>
-        <h1>Delete Review?</h1>
+      <h1>Delete Review?</h1>
       <div>Are you sure you would like to delete this review?</div>
-      <button onClick={yesDel}>Yes</button>
-      <button onClick={() => setShowModal(false)}>No</button>
+      <div className="yesNoBtns">
+        <button className="yes" onClick={yesDel}>
+          Yes
+        </button>
+        <button className="no" onClick={() => setShowModal(false)}>
+          No
+        </button>
+      </div>
     </div>
   );
 }

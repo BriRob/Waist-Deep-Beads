@@ -11,7 +11,7 @@ function User() {
   const dispatch = useDispatch();
   const userAndWbs = useSelector((state) => state.waistbeadsReducer?.userWbs);
 
-  console.log("userAndWbs", userAndWbs);
+  // console.log("userAndWbs", userAndWbs);
 
   let user;
   let waistbeads;
@@ -22,9 +22,9 @@ function User() {
     waistbeadsArr = Object.values(waistbeads).reverse();
   }
 
-  console.log("user from selector", user);
-  console.log("user's waistbeads", waistbeads);
-  console.log("user's waistbeadsArr", waistbeadsArr);
+  // console.log("user from selector", user);
+  // console.log("user's waistbeads", waistbeads);
+  // console.log("user's waistbeadsArr", waistbeadsArr);
 
   useEffect(() => {
     if (!userId) {
@@ -54,7 +54,7 @@ function User() {
       <div className="userInfo">{user.full_name}</div>
       <div className="userInfo">{user.email}</div>
       <h2>Your {waistbeadsArr.length} Creation(s)</h2>
-      <div className="profPosts">
+      {waistbeadsArr.length > 1 && (<div className="profPosts">
         {waistbeadsArr?.map((bead, idx) => (
           <Link to={`/waistbeads/${bead.id}`} key={idx} className="eachPost">
             <div className="">Posted on: {bead.created_at}</div>
@@ -73,7 +73,7 @@ function User() {
             </div>
           </Link>
         ))}
-      </div>
+      </div>)}
     </>
   );
 }

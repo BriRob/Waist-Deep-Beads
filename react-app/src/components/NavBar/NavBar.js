@@ -46,7 +46,7 @@ const NavBar = () => {
             </NavLink>
           </div>
           <div className="aboutCat">
-            <NavLink to="/about" className='about'>About</NavLink>
+            <NavLink to="/about" className='aboutLink'>About</NavLink>
           <CategoriesDropdown />
           </div>
         </div>

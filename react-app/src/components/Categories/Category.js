@@ -22,8 +22,8 @@ function Category() {
 
 //   const [isLoaded, setIsLoaded] = useState(false)
 
-  console.log('category \n\n', category);
-  console.log('wbArr \n\n', wbArr);
+  // console.log('category \n\n', category);
+  // console.log('wbArr \n\n', wbArr);
 
   useEffect(() => {
     //   (async () => {
@@ -52,7 +52,7 @@ function Category() {
       {category && category_wbs && (
         <div>
           <h1 className="catNameTitle">Waistbeads for "{category.category_name}"</h1>
-          <div className="splashPosts catPosts">
+          {wbArr.length > 0 && (<div className="splashPosts catPosts">
             {wbArr?.map((bead, idx) => (
               <Link
                 to={`/waistbeads/${bead.id}`}
@@ -71,7 +71,7 @@ function Category() {
                 </div>
               </Link>
             ))}
-          </div>
+          </div>)}
         </div>
       )}
     </>

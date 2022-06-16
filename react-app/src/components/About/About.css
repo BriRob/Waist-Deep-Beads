@@ -1,0 +1,33 @@
+.about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    max-width: 700px;
+    min-width: 450px;
+}
+
+.about h2 {
+    margin: 5px 0;
+}
+
+.aboutWbTitle {
+    color: #5583c6;
+    cursor: pointer;
+
+}
+
+.activeAbout {
+    color: #ebebeb;
+    text-decoration: underline solid white;
+/*  */
+}
+
+.contentInfo {
+    color: #ebebeb;
+    width: 100%;
+    padding: 2%;
+    background-color: #00000075;
+    border-radius: 7px;
+    margin-top: 45px;
+}

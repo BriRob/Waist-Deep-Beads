@@ -13,12 +13,12 @@ function CategoriesDropdown() {
 
   const [showCat, setShowCat] = useState(false);
 
-  console.log("\n\n categories obj here", categories);
+  // console.log("\n\n categories obj here", categories);
   let categoriesArr;
   if (categories) {
     categoriesArr = Object.values(categories);
   }
-  console.log("categoriesArr", categoriesArr);
+  // console.log("categoriesArr", categoriesArr);
 
   const openMenu = () => {
     setShowCat(true);

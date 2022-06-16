@@ -17,8 +17,8 @@ def price_check(form, field):
     price = field.data
     # print('\n\n price!!', price < 1, '\n\n')
     if (field.label.text == "Price"):
-        if price < 1 :
-            raise ValidationError('The lowest possible price is $1.00')
+        if price < 1 or price > 10000 :
+            raise ValidationError('Price must be between $1.00 USD and $10,000 USD')
 
 
 

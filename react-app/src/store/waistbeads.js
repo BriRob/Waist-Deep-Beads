@@ -2,6 +2,8 @@ const GET_ALL_WB = "waistbeads/GET_ALL_WB";
 const GET_ONE_WB = "waistbeads/GET_ONE_WB";
 const DELETE_WB = "waistbeads/DELETE_WB";
 const ONE_USER_WBS = "waistbeads/ONE_USER_WBS";
+const CLEAR_ALL_WBS = "waistbeads/CLEAR_ALL_WBS"
+const CLEAR_ONE_WB = "waistbeads/CLEAR_ONE_WB";
 
 const getAllWb = (waistbeads) => ({
   type: GET_ALL_WB,
@@ -23,6 +25,15 @@ const oneUserWbs = (waistbeads) => ({
   waistbeads,
 })
 
+// clear all WBS state
+export const clearAllWbs = () => ({
+  type: CLEAR_ALL_WBS
+})
+
+// clear one WB state
+export const clearWbs = () => ({
+  type: CLEAR_ONE_WB
+})
 
 export const getAllWaistbeadsThunk = () => async (dispatch) => {
   const response = await fetch("/api/waistbeads/");
@@ -45,7 +56,7 @@ export const getOneWaistbeadThunk = (beadId) => async (dispatch) => {
 export const newWaistbeadThunk = (userId, form, newCateArr) => async (dispatch) => {
   const { bead_img_url, name, price, description, in_stock } = form;
   const formData = new FormData();
-  console.log('in newwbthunk', newCateArr)
+  // console.log('in newwbthunk', newCateArr)
 
   //   console.log("in thunk!!!")
   formData.append("bead_img_url", bead_img_url);
@@ -85,7 +96,7 @@ export const editWaistbeadThunk = (beadId, form, newCateArr) => async (dispatch)
   const { bead_img_url, name, price, description, in_stock } = form;
   const formData = new FormData();
 
-    console.log(newCateArr, "in edit thunk!!!")
+    // console.log(newCateArr, "in edit thunk!!!")
   formData.append("bead_img_url", bead_img_url);
   formData.append("name", name);
   formData.append("price", price);
@@ -159,6 +170,12 @@ export default function waistbeadsReducer(state = {}, action) {
       newState = { ...state };
       newState.userWbs = action.waistbeads;
       return newState;
+    case CLEAR_ALL_WBS:
+      newState = { ...state };
+      return newState.waistbeads = null;
+    case CLEAR_ONE_WB:
+      newState = { ...state };
+      return newState.waistbead = null;
     default:
       return state;
   }

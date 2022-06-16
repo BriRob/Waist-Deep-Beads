@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllWaistbeadsThunk } from "../../store/waistbeads";
+import { clearAllWbs, getAllWaistbeadsThunk } from "../../store/waistbeads";
 import Footer from "../Footer";
 import "./Splash.css";
 
@@ -15,6 +15,8 @@ function Splash() {
 
   useEffect(() => {
     dispatch(getAllWaistbeadsThunk());
+
+    return () => dispatch(clearAllWbs())
   }, [dispatch]);
 
   return (

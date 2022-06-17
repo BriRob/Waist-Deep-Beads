@@ -22,7 +22,7 @@ function Splash() {
       setIsLoading(false);
     })();
 
-    return () => dispatch(clearAllWbs());
+    // return () => dispatch(clearAllWbs());
   }, [dispatch]);
 
   if (isLoading) {

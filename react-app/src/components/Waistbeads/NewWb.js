@@ -164,6 +164,7 @@ function NewWb({ setShowModal }) {
             </label>
             <input
               type="number"
+              step={0.01}
               name="price"
               onChange={(e) => setPrice(e.target.value)}
               min={1}

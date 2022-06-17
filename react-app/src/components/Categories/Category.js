@@ -61,6 +61,7 @@ function Category() {
               >
                 <img src={bead.bead_img_url} alt="waistbeads"></img>
                 <h3>{bead.name}</h3>
+                <div>{bead.user.username}</div>
                 {/* <div>Average Rating: {bead.rating}</div> */}
                 {/* <div>${bead.price}</div> */}
                 <div>

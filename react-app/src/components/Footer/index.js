@@ -14,6 +14,7 @@ function Footer() {
         <span>HTML5</span>
         <span>CSS</span>
         <span>React</span>
+        <span>Flask</span>
         <span>SQLAlchemy</span>
         <span>Docker</span>
       </div>

@@ -187,6 +187,7 @@ function EditWb({ hideEdit }) {
           <input
             type="number"
             name="price"
+            step={0.01}
             onChange={(e) => setPrice(e.target.value)}
             value={price}
             min={1}

@@ -11,6 +11,8 @@ def seed_users():
         full_name='Pamela Washington', username='pamela', email='pamela@aa.io', password='rasta')
     briana = User(
         full_name='Briana Robinson', username='noelle', email='briana@aa.io', password='briana')
+    cheryl = User(
+        full_name='Cheryl Durden', username='cheryl', email='cheryl@aa.io', password='cheryl')
     barbara = User(
         full_name='Barbara Golden-Applewhite', username='barbara', email='barbara@aa.io', password='barbara')
     indira = User(
@@ -38,6 +40,7 @@ def seed_users():
     db.session.add(alycia)
     db.session.add(pam)
     db.session.add(briana)
+    db.session.add(cheryl)
     db.session.add(barbara)
     db.session.add(indira)
     db.session.add(yolanda)

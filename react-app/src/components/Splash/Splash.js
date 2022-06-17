@@ -55,6 +55,7 @@ function Splash() {
                   style={{ visibility: imageLoading ? "hidden" : "visible" }}
                 ></img>
                 <h3>{bead.name}</h3>
+                <div>{bead.user.username}</div>
                 {/* <div>Average Rating: {bead.rating}</div> */}
                 {/* <div>${bead.price}</div> */}
                 <div>

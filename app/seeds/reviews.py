@@ -13,6 +13,9 @@ def seed_reviews():
     honey_1 = Review(
         author_id=1, beads_id=4, content=f'''My 9-year-old loves her honeybee! ''', rating=5
     )
+    aka_1 = Review(
+        author_id=6, beads_id=6, content=f'''My soror and I loved our waistbeads! Came just in time for Founder's''', rating=5
+    )
 
     db.session.add(sacred_1)
     db.session.add(sacred_2)

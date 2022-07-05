@@ -13,6 +13,7 @@ import OneWb from "./components/Waistbeads/OneWb";
 import NewWb from "./components/Waistbeads/NewWb";
 import Category from "./components/Categories/Category";
 import About from "./components/About/About";
+import SearchResults from "./components/Search/SearchResults";
 // import { getAllCategories } from "./store/categories";
 
 function App() {
@@ -62,6 +63,9 @@ function App() {
           </Route>
           <Route path="/categories/:catId" exact={true}>
             <Category />
+          </Route>
+          <Route path="/search/:word" exact={true}>
+            <SearchResults />
           </Route>
           <Route>
             <h1>Page Not Found</h1>

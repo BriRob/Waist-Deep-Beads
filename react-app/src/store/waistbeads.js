@@ -2,7 +2,7 @@ const GET_ALL_WB = "waistbeads/GET_ALL_WB";
 const GET_ONE_WB = "waistbeads/GET_ONE_WB";
 const DELETE_WB = "waistbeads/DELETE_WB";
 const ONE_USER_WBS = "waistbeads/ONE_USER_WBS";
-const CLEAR_ALL_WBS = "waistbeads/CLEAR_ALL_WBS"
+// const CLEAR_ALL_WBS = "waistbeads/CLEAR_ALL_WBS"
 const CLEAR_ONE_WB = "waistbeads/CLEAR_ONE_WB";
 
 const getAllWb = (waistbeads) => ({
@@ -26,9 +26,9 @@ const oneUserWbs = (waistbeads) => ({
 })
 
 // clear all WBS state
-export const clearAllWbs = () => ({
-  type: CLEAR_ALL_WBS
-})
+// export const clearAllWbs = () => ({
+//   type: CLEAR_ALL_WBS
+// })
 
 // clear one WB state
 export const clearWbs = () => ({
@@ -161,6 +161,7 @@ export default function waistbeadsReducer(state = {}, action) {
     case GET_ONE_WB:
       newState = { ...state };
       newState.waistbead = action.waistbead;
+      console.log("newState \n\n", newState)
       return newState;
     case DELETE_WB:
       newState = { ...state };
@@ -170,12 +171,16 @@ export default function waistbeadsReducer(state = {}, action) {
       newState = { ...state };
       newState.userWbs = action.waistbeads;
       return newState;
-    case CLEAR_ALL_WBS:
-      newState = { ...state };
-      return newState.waistbeads = null;
+    // case CLEAR_ALL_WBS:
+    //   newState = { ...state };
+    //   console.log("newState before making one null", newState)
+    //   return newState.waistbeads = null;
     case CLEAR_ONE_WB:
-      newState = { ...state };
-      return newState.waistbead = null;
+      newState = { ...state};
+      // console.log("newState before making one null", newState)
+      newState.waistbead = null
+      // console.log("newState", newState)
+      return newState;
     default:
       return state;
   }

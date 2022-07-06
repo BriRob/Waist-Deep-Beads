@@ -1,0 +1,42 @@
+.searchNav {
+    width: 50%;
+    max-width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 5px;
+}
+/* .searchNav form {
+    margin-top: 0;
+} */
+
+.searchInput {
+    width: 100%;
+    /* padding: 0 5px; */
+    font-size: 20px;
+  font-family: "Berkshire Swash", cursive;
+
+}
+
+.dynRes {
+    position: fixed;
+    top: 55px;
+    height: fit-content;
+    max-height: 175px;
+    overflow-y: scroll;
+    background-color: #ebebeb;
+    border-radius: 5px;
+    padding: 5px 0;
+    width: 36%;
+    max-width: 325px;
+    font-size: 20px;
+}
+
+.eachDynRes {
+    /* color: #ebebeb; */
+    color: #5583c6;
+    cursor: pointer;
+
+
+}

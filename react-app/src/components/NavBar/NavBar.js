@@ -8,6 +8,7 @@ import NewWbModal from "../Waistbeads/NewWbModal";
 import wdb_small from "../../images/wdb_small.png";
 import CategoriesDropdown from "../Categories/CategoriesDropdown";
 import About from "../About/About";
+import Search from "../Search";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
@@ -50,6 +51,9 @@ const NavBar = () => {
           <CategoriesDropdown />
           </div>
         </div>
+        {/* <div> */}
+          <Search/>
+        {/* </div> */}
         {/* <span className="navLinks">
           <NavLink to="/users" exact={true} activeClassName="active">
             Users

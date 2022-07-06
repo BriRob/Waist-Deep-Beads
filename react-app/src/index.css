@@ -64,15 +64,19 @@ a {
   color: rgb(122, 14, 41);
 }
 
-.profbtn-usname, .catDropdown, .catDropdownMenu div, .logo-btn, .aboutWbTitle, .navLinks {
+.profbtn-usname, .catDropdown, .catDropdownMenu div, .logo-btn, .aboutWbTitle, .navLinks, .eachDynRes {
     transition: 0.3s;
 }
 
-a:hover, button:hover, .profbtn-usname:hover, .catDropdown:hover, .catDropdownMenu div:hover, .logo-btn:hover, .aboutWbTitle:hover, .navLinks:hover {
+a:hover, button:hover, .profbtn-usname:hover, .catDropdown:hover, .catDropdownMenu div:hover, .logo-btn:hover, .aboutWbTitle:hover, .navLinks:hover, .eachDynRes:hover {
   transform: scale(1.1);
 
 }
 
-a:active, button:active, .profbtn-usname:active, .catDropdown:active, .catDropdownMenu div:active, .logo-btn:active, .aboutWbTitle:active, .navLinks:active {
+a:active, button:active, .profbtn-usname:active, .catDropdown:active, .catDropdownMenu div:active, .logo-btn:active, .aboutWbTitle:active, .navLinks:active, .eachDynRes:active {
     transform: scale(0.9);
+}
+
+input:focus, textarea:focus {
+  outline: none;
 }

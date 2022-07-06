@@ -19,6 +19,11 @@ function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [results, setResults] = useState([]);
 
+  const clickAwaySearch = () => {
+    setResults([]);
+    setSearchInput("");
+  };
+
   useEffect(() => {
     (async () => {
       await dispatch(getAllWaistbeadsThunk());
@@ -27,6 +32,18 @@ function Search() {
 
     // return () => dispatch(clearAllWbs());
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log("inside useEffect \n\n", searchInput);
+    if (!searchInput) return;
+    // if (searchInput) {
+    document.addEventListener("click", clickAwaySearch);
+    return () =>
+      document.removeEventListener("click", clickAwaySearch);
+    // }
+  }, [searchInput]);
+
+  console.log("outside useEffect \n\n", searchInput);
 
   const handleChange = (e) => {
     // setSearching(e.target.value)
@@ -63,6 +80,11 @@ function Search() {
         value={searchInput}
         className="searchInput"
       ></input>
+      {searchInput && results.length === 0 && (
+        <div className="dynRes">
+          <div className="eachDynRes">No waistbeads found</div>
+        </div>
+      )}
       {results.length != 0 && (
         <div className="dynRes">
           {results.map((res, idx) => (

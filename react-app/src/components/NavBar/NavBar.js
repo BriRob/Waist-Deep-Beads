@@ -51,9 +51,9 @@ const NavBar = () => {
           <CategoriesDropdown />
           </div>
         </div>
-        <div>
+        {/* <div> */}
           <Search/>
-        </div>
+        {/* </div> */}
         {/* <span className="navLinks">
           <NavLink to="/users" exact={true} activeClassName="active">
             Users

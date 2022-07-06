@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllCategories, getOneCategory } from "../../store/categories";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import './CategoriesDropdown.css'
+import "./CategoriesDropdown.css";
 
 function CategoriesDropdown() {
   const dispatch = useDispatch();
@@ -46,9 +46,11 @@ function CategoriesDropdown() {
 
   return (
     <div className="outerDropdown">
-        <>
-          <div className="catDropdown" onClick={openMenu}>Categories</div>
-      {categoriesArr && showCat && (
+      <>
+        <div className="catDropdown" onClick={openMenu}>
+          Categories
+        </div>
+        {categoriesArr && showCat && (
           <div className="catDropdownMenu">
             {showCat &&
               categoriesArr.map((cat, idx) => (
@@ -57,7 +59,7 @@ function CategoriesDropdown() {
                 </div>
               ))}
           </div>
-      )}
+        )}
       </>
     </div>
   );

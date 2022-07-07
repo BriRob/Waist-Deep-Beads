@@ -38,8 +38,7 @@ function Search() {
     if (!searchInput) return;
     // if (searchInput) {
     document.addEventListener("click", clickAwaySearch);
-    return () =>
-      document.removeEventListener("click", clickAwaySearch);
+    return () => document.removeEventListener("click", clickAwaySearch);
     // }
   }, [searchInput]);
 
@@ -73,13 +72,20 @@ function Search() {
   return (
     <div className="searchNav">
       {/* <form> */}
-      <input
-        type="text"
-        placeholder="search"
-        onChange={handleChange}
-        value={searchInput}
-        className="searchInput"
-      ></input>
+      <div className="inputAndX">
+        <input
+          type="text"
+          placeholder="search"
+          onChange={handleChange}
+          value={searchInput}
+          className="searchInput"
+        ></input>
+        {searchInput && (
+          <span>
+            <i className="fa-solid fa-x"></i>
+          </span>
+        )}
+      </div>
       {searchInput && results.length === 0 && (
         <div className="dynRes">
           <div className="eachDynRes">No waistbeads found</div>
